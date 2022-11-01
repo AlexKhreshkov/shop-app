@@ -48,7 +48,7 @@ export default function ItemPage() {
                                         </div>
                                     </div>
                                     <div className="item__buttons">
-                                        <div className="item__add-to-cart-btn cart">
+                                        <div className="item__add-to-cart-btn">
                                             <button>Add to cart</button>
                                         </div>
                                         <div className="item__like-btn">

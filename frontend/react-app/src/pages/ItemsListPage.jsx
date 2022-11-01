@@ -4,23 +4,12 @@ import { getCategories, getItems } from '../API/getData'
 import ItemListCategories from '../components/ItemListCategories'
 import ItemListItem from '../components/ItemListItem'
 import { Loader } from '../components/UI/loader/Loader'
+import { useData } from '../hooks/useAuth'
 import { useFetching } from '../hooks/useFetching'
+
 export default function ItemsListPage() {
-    const [items, setItems] = useState([])
-    const [categories, setCategories] = useState([])
-    const [fetchItems, isLoading, error] = useFetching(async () => {
-        let fetchedItems = await getItems()
-        setItems(fetchedItems)
-        let fetchedCategories = await getCategories()
-        setCategories(fetchedCategories)
-    }
-    )
 
-    useEffect(() => {
-        fetchItems()
-    }, [])
-    console.log(items);
-
+    const { items, setItems, isLoading, categories, setCategories } = useData()
 
     return (
         <div className="main-content" >

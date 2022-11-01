@@ -1,13 +1,14 @@
 import React from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuth'
+import { useAuth, useData } from '../hooks/useAuth'
 
 export default function Navigation() {
 
-    const { user, signOut } = useAuth()
+    const { user, signOut, cartItems } = useData()
     const location = useLocation()
     const navigate = useNavigate()
     const fromPage = location.state?.from?.pathname || '/'
+    const { isCartOpen, setCartStatus } = useData()
 
     return (
         <div className="nav">
@@ -34,9 +35,15 @@ export default function Navigation() {
             </div>
             <div className="nav__icons">
                 <div className="nav__cart-content">
-                    <div className="nav__count">1</div>
-                    <div className="nav__ellipse"><a href="#"><img src="/img/ellipse.png" alt="" /></a></div>
-                    <div className="nav__cart"><a href="#"><img src="/img/cart.png" alt="" /></a></div>
+                    {cartItems.length ?
+                        <>
+                            <div className="nav__count" onClick={() => setCartStatus(true)}>{cartItems.length}</div>
+                            <div className="nav__ellipse" onClick={() => setCartStatus(true)}><img src="/img/ellipse.png" /></div>
+                        </>
+                        :
+                        <></>
+                    }
+                    <div className="nav__cart"><img src="/img/cart.png" alt="" /></div>
                 </div>
                 <div className="nav__profile">
                     <NavLink to='/profile'><img src="/img/profile.png" alt="" /></NavLink>
