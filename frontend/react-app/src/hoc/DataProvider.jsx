@@ -12,6 +12,7 @@ export const DataProvider = ({ children }) => {
     const [categories, setCategories] = useState([])
     const [cartItems, setCartItems] = useState([])
     const [isCartOpen, setCartStatus] = useState(false)
+    const [cartItemsQuantity, setCartItemsQuantity] = useState(new Map())
 
     const [fetchItems, isLoading, error] = useFetching(async () => {
         let fetchedItems = await getItems()
@@ -44,7 +45,7 @@ export const DataProvider = ({ children }) => {
         }
         if (!cartItems.includes(item)) {
             setCartItems([...cartItems, item])
-            console.log(item);
+            setCartItemsQuantity(new Map(cartItemsQuantity.set(item, 1)))
         }
     }
 
@@ -57,9 +58,20 @@ export const DataProvider = ({ children }) => {
             }
         }
         setCartItems(cartItems.filter((element) => element !== item))
+        setCartItemsQuantity(new Map(cartItemsQuantity.delete(item)))
     }
 
-    const value = { items, setItems, isLoading, categories, setCategories, user, signIn, signOut, cartItems, setCartItems, addToCart, isCartOpen, setCartStatus, removeFromCart }
+    const getCartTotal = (cartItemsQuantity) => {
+        let sum = 0
+        for (let entries of cartItemsQuantity) {
+            let price = entries[0].price
+            sum += price * entries[1]
+        }
+        return sum
+    }
+
+
+    const value = { items, setItems, isLoading, categories, setCategories, user, signIn, signOut, cartItems, setCartItems, addToCart, isCartOpen, setCartStatus, removeFromCart, cartItemsQuantity, setCartItemsQuantity, getCartTotal }
 
     return <DataContext.Provider value={value}>
         {children}

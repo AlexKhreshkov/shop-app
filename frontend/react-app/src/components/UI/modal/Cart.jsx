@@ -1,14 +1,20 @@
 import React from 'react'
+import { useEffect } from 'react'
 import { useData } from '../../../hooks/useAuth'
 import MakeOrderBtn from '../buttons/MakeOrderBtn'
 import CartItem from './CartItem'
 
 
 export default function Cart() {
-    const { isCartOpen, setCartStatus, cartItems } = useData()
-    if (!cartItems.length) {
+    const { isCartOpen, setCartStatus, cartItems, cartItemsQuantity, getCartTotal } = useData()
+
+    useEffect(() => {
         setCartStatus(false)
-    }
+    }, [!cartItems.length])
+
+    useEffect(() => {
+        getCartTotal(cartItemsQuantity)
+    }, [cartItems.length])
 
     return (
         <>
@@ -28,9 +34,11 @@ export default function Cart() {
                                         price={item.price}
                                         image={item.image}
                                         slug={item.slug}
+                                        item={item}
                                     />
                                 )}
                             </div>
+                            <div className='cart__total'>Total: {getCartTotal(cartItemsQuantity)}</div>
                             <MakeOrderBtn>Make Order</MakeOrderBtn>
                         </div>
                     </div>
