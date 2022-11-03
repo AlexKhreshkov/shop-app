@@ -23,9 +23,7 @@ function App() {
                         <Route index element={<MainPage />} />
                         <Route path='about' element={<AboutPage />} />
                         <Route path='items' element={<ItemsListPage />} />
-                        <Route path='items/:slug' element={
-                            <ItemPage />
-                        } />
+                        <Route path='items/:slug' element={<ItemPage />} />
                         <Route path='login' element={<LoginPage />} />
                         <Route path='signup' element={<SignupPage />} />
                         <Route path='logout' element={

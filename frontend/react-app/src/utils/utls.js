@@ -11,3 +11,13 @@ export function searchItemBySlug(slug, items, callback) {
         }
     }
 }
+
+export function getCategoryItemCount(items, categoryId) {
+    let count = 0
+    for (let item of items) {
+        if (item.category === categoryId) {
+            count++
+        }
+    }
+    return count
+}

@@ -7,8 +7,12 @@ export default function ItemListCategories({ categories }) {
             <div className="items__categories-title">CATEGORIES</div>
             <div className="items__categories-list">
                 <ul>
-                    {categories.map((element) =>
-                        <Category key={element.id} category={element.name} />
+                    {categories.map((category) =>
+                        <Category
+                            key={category.id}
+                            name={category.name}
+                            categoryId={category.id}
+                        />
                     )}
                 </ul>
             </div>

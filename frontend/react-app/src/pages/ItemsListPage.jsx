@@ -37,7 +37,7 @@ export default function ItemsListPage() {
                                             slug={item.slug}
                                             body={item.body}
                                             price={item.price}
-                                            category={item.category}
+                                            category_name={item.category_name}
                                             image={item.image}
                                             availableCount={item.available_count}
                                             likes={item.likes}
