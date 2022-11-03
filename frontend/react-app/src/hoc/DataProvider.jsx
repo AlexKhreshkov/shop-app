@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { createContext } from 'react'
-import { getCategories, getItem, getItems } from '../API/getData'
+import { getCategories, getComments, getItem, getItems } from '../API/getData'
 import { useFetching } from '../hooks/useFetching'
 
 export const DataContext = createContext(null)
@@ -12,13 +12,18 @@ export const DataProvider = ({ children }) => {
     const [categories, setCategories] = useState([])
     const [cartItems, setCartItems] = useState([])
     const [isCartOpen, setCartStatus] = useState(false)
+    const [comments, setComments] = useState([])
     const [cartItemsQuantity, setCartItemsQuantity] = useState(new Map())
+    const [itemComments, setItemComments] = useState([])
+
 
     const [fetchItems, isLoading, error] = useFetching(async () => {
         let fetchedItems = await getItems()
         setItems(fetchedItems)
         let fetchedCategories = await getCategories()
         setCategories(fetchedCategories)
+        let fetchedComments = await getComments()
+        setComments(fetchedComments)
     })
 
     useEffect(() => {
@@ -71,7 +76,7 @@ export const DataProvider = ({ children }) => {
     }
 
 
-    const value = { items, setItems, isLoading, categories, setCategories, user, signIn, signOut, cartItems, setCartItems, addToCart, isCartOpen, setCartStatus, removeFromCart, cartItemsQuantity, setCartItemsQuantity, getCartTotal }
+    const value = { items, setItems, isLoading, categories, setCategories, user, signIn, signOut, cartItems, setCartItems, addToCart, isCartOpen, setCartStatus, removeFromCart, cartItemsQuantity, setCartItemsQuantity, getCartTotal, comments, itemComments, setItemComments }
 
     return <DataContext.Provider value={value}>
         {children}

@@ -421,35 +421,43 @@ a {
 
 .item__item-img img {
   width: 100%;
-  max-width: 700px;
+  max-width: 500px;
   object-fit: cover;
 }
 
+.item__description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .item__title {
-  font-size: 18px;
+  font-size: 30px;
   margin-bottom: 10px;
   color: #333333;
 }
 
 .item__price {
-  font-size: 18px;
-  margin-bottom: 10px;
+  font-size: 20px;
+  margin-bottom: 20px;
   color: #3cb878;
 }
 
 .item__rating {
+  font-size: 18px;
   margin-bottom: 10px;
 }
 
 .item__likes {
+  font-size: 18px;
   margin-bottom: 10px;
 }
 
 .item__text {
-  font-size: 14px;
+  font-size: 20px;
   line-height: 24px;
   color: #232323;
-  margin-bottom: 10px;
+  margin: 18px 0;
 }
 
 .item__tags {
@@ -462,6 +470,7 @@ a {
 .item__buttons {
   display: flex;
 }
+
 
 .item__add-to-cart-btn button {
   background: url(../public/img/cart.png) 10px 24px no-repeat;
@@ -533,6 +542,7 @@ a {
 .comments__comment-content {
   padding: 20px;
   background-color: white;
+  width: 100%;
 }
 
 .comments__comment-head {
@@ -556,12 +566,12 @@ a {
 .comments__comment-author-name {
   font-size: 16px;
   line-height: 24px;
-  color: #232323;
+  color: #3cb878;
   margin-bottom: 10px;
 }
 
 .comments__text {
-  font-size: 14px;
+  font-size: 18px;
   line-height: 24px;
   letter-spacing: 0.025em;
   color: #232323;
@@ -718,7 +728,7 @@ a {
 
 .items__item-img {
   margin-right: 20px;
-  flex: 0 0 50%;
+  flex: 0 0 30%;
   min-height: 150px;
   min-width: 150px;
 }
@@ -951,4 +961,10 @@ a {
   font-size: 20px;
   margin-bottom: 10px;
   color: red;
+}
+
+.login-to-comment {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 25px;
 }

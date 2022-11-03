@@ -1,5 +1,6 @@
 import React from 'react'
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { useData } from '../../../hooks/useAuth'
 import MakeOrderBtn from '../buttons/MakeOrderBtn'
 import CartItem from './CartItem'
@@ -38,8 +39,11 @@ export default function Cart() {
                                     />
                                 )}
                             </div>
-                            <div className='cart__total'>Total: {getCartTotal(cartItemsQuantity)}</div>
-                            <MakeOrderBtn>Make Order</MakeOrderBtn>
+                            <div className='cart__total'>Total: {getCartTotal(cartItemsQuantity)}$</div>
+                            <Link to={'order'}><MakeOrderBtn onClick={() => setCartStatus(false)}>
+                                Make Order
+                            </MakeOrderBtn>
+                            </Link>
                         </div>
                     </div>
                 </div>

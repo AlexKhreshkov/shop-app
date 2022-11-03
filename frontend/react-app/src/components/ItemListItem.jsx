@@ -16,7 +16,7 @@ export default function ItemListItem({ title, slug, body, price, category, image
                 <div className="items__item-text">{body}</div>
                 <div className="items__item-categories">{category}</div>
                 <div className="item__buttons">
-                    <AddToCartBtn slug={slug}/>
+                    <AddToCartBtn slug={slug} />
                     <LikeBtn />
                 </div>
             </div>

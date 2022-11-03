@@ -1,15 +1,12 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
-import { getCategories, getItems } from '../API/getData'
 import ItemListCategories from '../components/ItemListCategories'
 import ItemListItem from '../components/ItemListItem'
 import { Loader } from '../components/UI/loader/Loader'
 import { useData } from '../hooks/useAuth'
-import { useFetching } from '../hooks/useFetching'
 
 export default function ItemsListPage() {
 
-    const { items, setItems, isLoading, categories, setCategories } = useData()
+    const { items, isLoading, categories } = useData()
 
     return (
         <div className="main-content" >

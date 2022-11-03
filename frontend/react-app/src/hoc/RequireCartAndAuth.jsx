@@ -1,14 +1,14 @@
 import React from 'react'
 import { Navigate, useLocation } from 'react-router-dom'
-import { useData } from '../hooks/useAuth'
+import { useAuth } from '../hooks/useAuth'
 
-export function RequireAuth({ children }) {
+export function RequireCartAndAuth({ children }) {
     const location = useLocation()
-    const {user, cartItems} = useData()
+    const { user } = useAuth()
 
-    if (!user || !cartItems) {
+    if (!user) {
         return <Navigate to={'/login'} state={{ from: location }} />
-    }   
+    }
 
     return children
 }

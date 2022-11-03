@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function MakeOrderBtn({ children, props }) {
+export default function MakeOrderBtn({ children, ...props }) {
     return (
         <div className='makeOrder-btn'>
             <button {...props}>

@@ -33,7 +33,7 @@ export default function CartItem({ index, title, price, image, slug, item }) {
                 </div>
                 <div className="cart__item-column">
                     <div className="cart__item-item_count-price">
-                        {price} * {cartItemsQuantity.get(item)} = {price * cartItemsQuantity.get(item)}
+                        {price}$ * {cartItemsQuantity.get(item)} = {price * cartItemsQuantity.get(item)}$
                     </div>
                     <button style={{ padding: '5px 20px' }} onClick={() => removeFromCart(slug)}>Remove</button>
                 </div>
