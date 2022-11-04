@@ -15,7 +15,7 @@ export default function ItemPage() {
     const { slug } = useParams()
     const { items, comments, isLoading, user } = useData()
     const [item, setItem] = useState({})
-    const [itemComments, setItemComments] = useState([...comments])
+    const [itemComments, setItemComments] = useState([])
 
     useEffect(() => {
         const item = searchItemBySlug(slug, items)
@@ -68,7 +68,7 @@ export default function ItemPage() {
                                     :
                                     <div className='login-to-comment'>
                                         <Link to='/login'>
-                                            <span style={{ textDecoration: 'underline', color:'red' }}>
+                                            <span style={{ textDecoration: 'underline', color: 'red' }}>
                                                 Login
                                             </span>
                                         </Link>

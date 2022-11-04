@@ -21,3 +21,11 @@ export function getCategoryItemCount(items, categoryId) {
     }
     return count
 }
+
+export function setTrueStateCategories(categories) {
+    let obj = {}
+    for (let category of categories) {
+        obj[category.name] = false
+    }
+    return obj
+}

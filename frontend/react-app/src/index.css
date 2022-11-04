@@ -417,6 +417,7 @@ a {
 
 .item__item-img {
   margin-right: 20px;
+  flex: 0 0 40%;
 }
 
 .item__item-img img {
@@ -706,6 +707,7 @@ a {
 .items__content {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .items__header {
