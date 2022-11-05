@@ -1,13 +1,13 @@
 import React from 'react'
 import { Navigate, useLocation } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuth'
+import { useData } from '../hooks/useAuth'
 
 export function RequireCartAndAuth({ children }) {
     const location = useLocation()
-    const { user } = useAuth()
+    const { authToken, cartItems } = useData()
 
-    if (!user) {
-        return <Navigate to={'/login'} state={{ from: location }} />
+    if (!authToken || !cartItems) {
+        return <Navigate to={'/signup'} state={{ from: location }} />
     }
 
     return children

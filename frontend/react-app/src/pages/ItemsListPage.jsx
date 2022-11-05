@@ -33,10 +33,8 @@ export default function ItemsListPage() {
     }, [selectedSort, items])
 
     const searchedAndSortedItems = useMemo(() => {
-        return sortedItems.filter(item => item.title.includes(searchQuery))
+        return sortedItems.filter(item => item.title.toLowerCase().includes(searchQuery.toLowerCase()))
     }, [searchQuery, sortedItems])
-
-
 
     return (
         <div className="main-content" >
@@ -53,7 +51,7 @@ export default function ItemsListPage() {
                             />
                             <div className="items__content">
                                 <div className="items__header">
-                                    <div className="items__header-showing-results">Showing {searchedAndSortedItems.length} results</div>
+                                    <div className="items__header-showing-results">Showing {searchedAndSortedItems.length} results of {items.length}</div>
                                     <ItemsSort
                                         onChange={e => setSelectedSort(e.target.value)}
                                     />

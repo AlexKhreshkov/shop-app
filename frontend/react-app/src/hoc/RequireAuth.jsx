@@ -4,11 +4,11 @@ import { useData } from '../hooks/useAuth'
 
 export function RequireAuth({ children }) {
     const location = useLocation()
-    const {user, cartItems} = useData()
+    const { authToken } = useData()
 
-    if (!user || !cartItems) {
-        return <Navigate to={'/login'} state={{ from: location }} />
-    }   
+    if (!authToken) {
+        return <Navigate to={'/signup'} state={{ from: location }} />
+    }
 
     return children
 }

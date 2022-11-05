@@ -689,7 +689,8 @@ a {
 }
 
 .items__categories {
-  margin: 10px 180px 10px 30px;
+  margin: 10px 20px 10px 30px;
+  width: 20%;
 }
 
 .items__categories-title {

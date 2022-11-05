@@ -1,23 +1,24 @@
 import React from 'react'
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuth'
+import { useData } from '../hooks/useAuth'
 import BlackLine from './BlackLine'
 
 export default function LoginPage() {
     const navigate = useNavigate()
     const location = useLocation()
     const fromPage = location.state?.from?.pathname || '/'
-    const { signIn } = useAuth()
+    const { signUp } = useData()
     const [userInput, setUserInput] = useState({
-        userName: '',
+        username: '',
         password: '',
+        email: '',
     })
 
     const sumbitAuthForm = (event) => {
         event.preventDefault()
-        if (userInput.userName && userInput.password) {
-            signIn(userInput, () => navigate(fromPage, { replace: true }))
+        if (userInput.username && userInput.password && userInput.email) {
+            signUp(userInput, () => navigate(fromPage, { replace: true }))
         }
     }
 
@@ -29,27 +30,53 @@ export default function LoginPage() {
                     SignUp
                     <br />
                 </div>
+                {fromPage !== '/' ?
+                    <div style={{ textAlign: 'center', fontSize: '20px', marginTop: '40px' }}>
+                        <div style={{ textDecoratzon: 'underline', marginBottom: '10px' }}>
+                            First, SignUp
+                        </div>
+                        to access {fromPage}
+                    </div>
+                    :
+                    <div></div>
+                }
                 <div className="auth-form">
                     <form onSubmit={sumbitAuthForm}>
                         <label htmlFor="username">Username:</label>
                         <input
+                            required
                             onChange={(event) => {
                                 setUserInput({
-                                    userName: event.target.value,
-                                    password: userInput.password
+                                    username: event.target.value,
+                                    password: userInput.password,
+                                    email: userInput.email,
                                 })
                             }}
                             type="text"
                         />
                         <label htmlFor="password">Password:</label>
                         <input
+                            required
                             onChange={(event) => {
                                 setUserInput({
-                                    userName: userInput.userName,
-                                    password: event.target.value
+                                    username: userInput.username,
+                                    password: event.target.value,
+                                    email: userInput.email,
                                 })
                             }}
                             type="password"
+                        />
+                        <label htmlFor="email">Email:</label>
+                        <input
+                            required
+                            onChange={(event) => {
+                                setUserInput({
+                                    username: userInput.username,
+                                    password: userInput.password,
+                                    email: event.target.value,
+                                })
+                            }}
+                            type="email"
                         />
                         <button>SignUp</button>
                     </form>

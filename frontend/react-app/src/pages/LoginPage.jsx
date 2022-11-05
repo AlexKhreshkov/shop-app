@@ -1,14 +1,14 @@
 import React from 'react'
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { useAuth } from '../hooks/useAuth'
+import { useData } from '../hooks/useAuth'
 import BlackLine from './BlackLine'
 
 export default function LoginPage() {
     const navigate = useNavigate()
     const location = useLocation()
     const fromPage = location.state?.from?.pathname || '/'
-    const { signIn } = useAuth()
+    const { signIn } = useData()
     const [userInput, setUserInput] = useState({
         userName: '',
         password: '',
@@ -43,20 +43,22 @@ export default function LoginPage() {
                     <form onSubmit={sumbitAuthForm}>
                         <label htmlFor="username">Username:</label>
                         <input
+                            required
                             onChange={(event) => {
                                 setUserInput({
                                     userName: event.target.value,
-                                    password: userInput.password
+                                    password: userInput.password,
                                 })
                             }}
                             type="text"
                         />
                         <label htmlFor="password">Password:</label>
                         <input
+                            required
                             onChange={(event) => {
                                 setUserInput({
                                     userName: userInput.userName,
-                                    password: event.target.value
+                                    password: event.target.value,
                                 })
                             }}
                             type="password"

@@ -1,14 +1,16 @@
 import React from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth, useData } from '../hooks/useAuth'
+import { getUserUserName } from '../API/getData'
 
 export default function Navigation() {
 
-    const { user, signOut, cartItems } = useData()
+    const { user, authToken, signOut, cartItems } = useData()
     const location = useLocation()
-    const navigate = useNavigate()
+    const navigate = useNavigate()  
     const fromPage = location.state?.from?.pathname || '/'
     const { isCartOpen, setCartStatus } = useData()
+
 
     return (
         <div className="nav">
@@ -17,7 +19,7 @@ export default function Navigation() {
                 <div className="nav__item"><NavLink end to='/'>Main</NavLink></div>
                 <div className="nav__item"><NavLink end to='/items'>Products</NavLink></div>
                 <div className="nav__item"><NavLink end to='/about'>About</NavLink></div>
-                {user ?
+                {authToken ?
                     <div className="nav__item">
                         <Link onClick={() => signOut(() => navigate(fromPage))}>
                             Logout
@@ -25,7 +27,6 @@ export default function Navigation() {
                     </div>
                     :
                     <>
-                        <div className="nav__item"><NavLink end to='/login'>Login</NavLink></div>
                         <div className="nav__item"><NavLink end to='/signup'>SignUp</NavLink></div>
                     </>
                 }
@@ -48,6 +49,12 @@ export default function Navigation() {
                 <div className="nav__profile">
                     <NavLink to='/profile'><img src="/img/profile.png" alt="" /></NavLink>
                 </div>
+                {/* {authToken
+                    ?
+                    <div>{getUserUserName(authToken)}</div>
+                    :
+                    <></>
+                } */}
             </div>
         </div>
     )

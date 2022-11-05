@@ -22,6 +22,14 @@ export function getCategoryItemCount(items, categoryId) {
     return count
 }
 
+
+// export function searchUserProfileForComment(usersProfilesPic){
+//     for (let user of usersProfilesPic){
+//         if (user.id === )
+//     }
+// }
+
+
 export function setTrueStateCategories(categories) {
     let obj = {}
     for (let category of categories) {

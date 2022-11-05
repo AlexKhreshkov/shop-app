@@ -13,6 +13,7 @@ import LogoutPage from './pages/LogoutPage';
 import SignupPage from './pages/SignupPage';
 import { DataProvider } from './hoc/DataProvider';
 import OrderPage from './pages/OrderPage'
+import { RequireNoAuth } from './hoc/RequireNoAuth';
 
 function App() {
     return (
@@ -24,8 +25,11 @@ function App() {
                         <Route path='about' element={<AboutPage />} />
                         <Route path='items' element={<ItemsListPage />} />
                         <Route path='items/:slug' element={<ItemPage />} />
-                        <Route path='login' element={<LoginPage />} />
-                        <Route path='signup' element={<SignupPage />} />
+                        <Route path='signup' element={
+                            <RequireNoAuth>
+                                <SignupPage />
+                            </RequireNoAuth>
+                        } />
                         <Route path='logout' element={
                             <RequireAuth>
                                 <LogoutPage />

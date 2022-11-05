@@ -1,9 +1,11 @@
 import React from 'react'
+import { useData } from '../hooks/useAuth'
 import BlackLine from './BlackLine'
 
-
-
 export default function ProfilePage() {
+
+    const {user} = useData()
+    console.log(user);
     return (
         <div className="main-content">
             <BlackLine />

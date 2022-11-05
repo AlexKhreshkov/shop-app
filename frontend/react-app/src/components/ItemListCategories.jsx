@@ -20,6 +20,7 @@ export default function ItemListCategories({ categories }) {
                 <div className="items__categories-price-filter-title">
                     Price Filter
                 </div>
+                <input type="text" />   
             </div>
         </div>
     )

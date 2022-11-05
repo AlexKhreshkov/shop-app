@@ -13,7 +13,7 @@ import CommentForm from '../components/UI/forms/CommentForm'
 export default function ItemPage() {
 
     const { slug } = useParams()
-    const { items, comments, isLoading, user } = useData()
+    const { items, comments, isLoading, user, authToken } = useData()
     const [item, setItem] = useState({})
     const [itemComments, setItemComments] = useState([])
 
@@ -62,14 +62,14 @@ export default function ItemPage() {
                         <div className="comments">
                             <div className="comments__wrapp">
                                 <div className="comments__count">Comments: {itemComments.length}</div>
-                                {user
+                                {authToken
                                     ?
                                     <></>
                                     :
                                     <div className='login-to-comment'>
-                                        <Link to='/login'>
+                                        <Link to='/signup'>
                                             <span style={{ textDecoration: 'underline', color: 'red' }}>
-                                                Login
+                                                SignUp
                                             </span>
                                         </Link>
                                         <span> to add comment</span>
@@ -78,13 +78,14 @@ export default function ItemPage() {
                                 {itemComments.map((comment) =>
                                     <Comment
                                         key={comment.id}
+                                        userId={comment.user}
                                         user_name={comment.user_name}
                                         name={comment.name}
                                         text={comment.text}
                                         created={comment.created}
                                     />
                                 )}
-                                {user
+                                {authToken
                                     ?
                                     <CommentForm />
                                     :

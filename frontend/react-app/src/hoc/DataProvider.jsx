@@ -1,13 +1,14 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { createContext } from 'react'
-import { getCategories, getComments, getItem, getItems } from '../API/getData'
+import { getCategories, getComments, getItem, getItems, getUsersProfilesPic } from '../API/getData'
 import { useFetching } from '../hooks/useFetching'
 
 export const DataContext = createContext(null)
 export const DataProvider = ({ children }) => {
 
     const [user, setUser] = useState(null)
+    const [authToken, setAuthToken] = useState(null)
     const [items, setItems] = useState([])
     const [categories, setCategories] = useState([])
     const [cartItems, setCartItems] = useState([])
@@ -15,6 +16,7 @@ export const DataProvider = ({ children }) => {
     const [comments, setComments] = useState([])
     const [cartItemsQuantity, setCartItemsQuantity] = useState(new Map())
     const [itemComments, setItemComments] = useState([])
+    const [usersProfilesPic, setUsersProfilesPic] = useState([])
 
 
     const [fetchItems, isLoading, error] = useFetching(async () => {
@@ -24,6 +26,11 @@ export const DataProvider = ({ children }) => {
         setCategories(fetchedCategories)
         let fetchedComments = await getComments()
         setComments(fetchedComments)
+        let fetchedUsersProfiles = await getUsersProfilesPic()
+        setUsersProfilesPic(fetchedUsersProfiles)
+        if (localStorage.getItem('authToken')) {
+            setAuthToken(localStorage.getItem('authToken'))
+        }
     })
 
     useEffect(() => {
@@ -31,12 +38,46 @@ export const DataProvider = ({ children }) => {
     }, [])
 
 
-    const signIn = (newUser, redirectCallBack) => {
-        setUser(newUser)
+    async function signUp(newUser, redirectCallBack) {
+
+        const sigUpResponse = await fetch('http://127.0.0.1:8000/api/auth/users/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newUser),
+        })
+        let EmailUsernameId = await sigUpResponse.json()
+        console.log(EmailUsernameId);
+        console.log(newUser, newUser.password, newUser.username);
+        const getTokenResponse = await fetch('http://127.0.0.1:8000/api/auth/token/login/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                'password': newUser.password,
+                'username': newUser.username,
+            }),
+        })
+        const token = await getTokenResponse.json()
+        setAuthToken(token.auth_token)
+        localStorage.setItem('authToken', token.auth_token)
+
         redirectCallBack()
     }
+
+
     const signOut = (redirectCallBack) => {
-        setUser(null)
+        fetch('http://127.0.0.1:8000/api/auth/token/logout/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${authToken}`,
+            },
+        })
+        setAuthToken(null)
+        localStorage.removeItem('authToken')
         redirectCallBack()
     }
 
@@ -76,7 +117,7 @@ export const DataProvider = ({ children }) => {
     }
 
 
-    const value = { items, setItems, isLoading, categories, setCategories, user, signIn, signOut, cartItems, setCartItems, addToCart, isCartOpen, setCartStatus, removeFromCart, cartItemsQuantity, setCartItemsQuantity, getCartTotal, comments, itemComments, setItemComments }
+    const value = { items, setItems, isLoading, categories, setCategories, user, authToken, setAuthToken, signUp, signOut, cartItems, setCartItems, addToCart, isCartOpen, setCartStatus, removeFromCart, cartItemsQuantity, setCartItemsQuantity, getCartTotal, comments, itemComments, setItemComments, usersProfilesPic }
 
     return <DataContext.Provider value={value}>
         {children}
