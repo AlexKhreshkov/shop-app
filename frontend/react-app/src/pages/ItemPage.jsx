@@ -16,18 +16,16 @@ export default function ItemPage() {
     const { slug } = useParams()
     const { items, comments, isLoading, user, authToken } = useData()
     const [item, setItem] = useState({})
-    const [itemComments, setItemComments] = useState([])
 
     useEffect(() => {
         const item = searchItemBySlug(slug, items)
         setItem(item)
     })
 
-    useEffect(() => {
-        setItemComments(comments.filter(comment => comment.item_slug === slug))
-    }, [comments])
-
-
+    function setItemComments(comments) {
+        return [...comments].filter(comment => comment.item_slug === slug)
+    }
+    
     return (
         <div className="main-content">
             {isLoading
@@ -65,7 +63,7 @@ export default function ItemPage() {
                             </div>
                             <div className="comments">
                                 <div className="comments__wrapp">
-                                    <div className="comments__count">Comments: {itemComments.length}</div>
+                                    <div className="comments__count">Comments: {setItemComments(comments).length}</div>
                                     {authToken
                                         ?
                                         <></>
@@ -79,7 +77,7 @@ export default function ItemPage() {
                                             <span> to add comment</span>
                                         </div>
                                     }
-                                    {itemComments.map((comment) =>
+                                    {setItemComments(comments).map((comment) =>
                                         <Comment
                                             key={comment.id}
                                             userId={comment.user}
@@ -91,7 +89,9 @@ export default function ItemPage() {
                                     )}
                                     {authToken
                                         ?
-                                        <CommentForm />
+                                        <CommentForm
+                                            item={item}
+                                        />
                                         :
                                         <></>
                                     }

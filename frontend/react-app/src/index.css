@@ -612,6 +612,7 @@ a {
   border: 1px solid #ebebeb;
   margin-right: 30px;
   margin-bottom: 20px;
+  padding: 10px;
 }
 
 .comments__add-comment-inputs input:last-child {
@@ -657,6 +658,7 @@ a {
   width: 100%;
   height: 147px;
   border: 1px solid #ebebeb;
+  padding: 10px;
 }
 
 .comments__add-comment-textarea textarea:focus {

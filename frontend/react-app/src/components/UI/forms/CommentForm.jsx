@@ -1,10 +1,53 @@
 import React from 'react'
+import { useState } from 'react'
+import { base_url, getComments } from '../../../API/getData'
+import { useData } from '../../../hooks/useAuth'
+import Success from '../modal/Success'
 
-export default function CommentForm() {
+export default function CommentForm({ item }) {
+
+    const { user, authToken, setComments } = useData()
+    const [commentForm, setCommentForm] = useState({
+        'name': user.username,
+        'text': '',
+    })
+    const [isSuccessModal, setIsSuccessModal] = useState(false)
+
+    async function addComment(event) {
+        event.preventDefault()
+        setIsSuccessModal(true)
+        const userCommentForm = {
+            ...commentForm,
+            user: +user.id,
+            item: +item.id,
+        }
+        console.log(userCommentForm);
+        fetch(`${base_url}/comments/add/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${authToken}`,
+            },
+            body: JSON.stringify(userCommentForm),
+        })
+        const fetchedComments = await getComments()
+        setComments(fetchedComments)
+        setCommentForm({ ...commentForm, text: '' })
+    }
+
     return (
         <div className="comments__add-comment">
+            {isSuccessModal
+                ?
+                <Success
+                    onClick={e => setIsSuccessModal(false)}
+                />
+                :
+                <></>
+            }
+            <a href=''></a>
             <div className="comments__add-comment-wrapp">
-                <form action="">
+                <form onSubmit={e => addComment(e)}>
                     <div className="comments__add-comment-title">
                         Add your comment
                     </div>
@@ -12,20 +55,31 @@ export default function CommentForm() {
                         Your name:
                     </div>
                     <div className="comments__add-comment-inputs">
-                        <input type="text" />
+                        <input
+                            type="text"
+                            value={commentForm.name}
+                            onChange={e => {
+                                setCommentForm({ ...commentForm, name: e.target.value })
+                            }}
+                        />
                     </div>
                     <div className="comments__add-comment-subtitle">
                         <div className="comments__add-comment-your-comment">Your comment</div>
-                        <div className="comments__add-comment-rating">
+                        {/* <div className="comments__add-comment-rating">
                             <div className="comments__add-comment-rating-title">Your rating</div>
                             <div className="comments__add-comment-rating-ratings">1 2 3 4 5</div>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="comments__add-comment-textarea">
-                        <textarea></textarea>
+                        <textarea
+                            required
+                            value={commentForm.text}
+                            onChange={e => {
+                                setCommentForm({ ...commentForm, text: e.target.value })
+                            }} />
                     </div>
                     <div className="comments__add-comment-button">
-                        <button type="submit">SUBMIT</button>
+                        <button>ADD</button>
                     </div>
                 </form>
             </div>
