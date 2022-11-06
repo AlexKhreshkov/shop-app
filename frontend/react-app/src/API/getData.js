@@ -26,17 +26,42 @@ export async function getUsersProfilesPic() {
     return usersProfiles
 }
 
-export async function getUserUserName(token) {
-    const response = await fetch(`${base_url}/auth/users/me/`, {
+export async function getUserData(authToken) {
+    const userIfnoResponse = await fetch(`${base_url}/auth/users/me/`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Token ${token}`,
+            'Authorization': `Token ${authToken}`,
         },
     })
-    let userIdEmailUsername = await response.json()
-    const username = userIdEmailUsername.username
-    return username
+    let userIdEmailUsername = await userIfnoResponse.json()
+    const profileID = userIdEmailUsername.id
+
+    const userProfileResponse = await fetch(`${base_url}/profiles/${profileID}/`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${authToken}`,
+        },
+    })  
+    const userProfile = await userProfileResponse.json()
+    const userData = { ...userIdEmailUsername, ...userProfile }
+    return userData
 }
+
+
+
+// export async function getUserUserName(token) {
+//     const response = await fetch(`${base_url}/auth/users/me/`, {
+//         method: 'GET',
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'Authorization': `Token ${token}`,
+//         },
+//     })
+//     let userIdEmailUsername = await response.json()
+//     const username = userIdEmailUsername.username
+//     return username
+// }
 
 

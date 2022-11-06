@@ -4,11 +4,10 @@ import { useData } from '../hooks/useAuth'
 
 export function RequireAuth({ children }) {
     const location = useLocation()
-    const { authToken } = useData()
+    const { authToken, isLoading } = useData()
 
     if (!authToken) {
         return <Navigate to={'/signup'} state={{ from: location }} />
     }
-
     return children
 }

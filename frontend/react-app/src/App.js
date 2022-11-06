@@ -26,9 +26,7 @@ function App() {
                         <Route path='items' element={<ItemsListPage />} />
                         <Route path='items/:slug' element={<ItemPage />} />
                         <Route path='signup' element={
-                            <RequireNoAuth>
-                                <SignupPage />
-                            </RequireNoAuth>
+                            <SignupPage />
                         } />
                         <Route path='logout' element={
                             <RequireAuth>

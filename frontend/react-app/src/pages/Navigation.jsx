@@ -7,10 +7,9 @@ export default function Navigation() {
 
     const { user, authToken, signOut, cartItems } = useData()
     const location = useLocation()
-    const navigate = useNavigate()  
+    const navigate = useNavigate()
     const fromPage = location.state?.from?.pathname || '/'
     const { isCartOpen, setCartStatus } = useData()
-
 
     return (
         <div className="nav">
@@ -49,12 +48,15 @@ export default function Navigation() {
                 <div className="nav__profile">
                     <NavLink to='/profile'><img src="/img/profile.png" alt="" /></NavLink>
                 </div>
-                {/* {authToken
+                {user
                     ?
-                    <div>{getUserUserName(authToken)}</div>
+                    <div>
+                        <div>Welcome,</div>
+                        <div style={{ textAlign: 'center' }}>{user.username}</div>
+                    </div>
                     :
                     <></>
-                } */}
+                }
             </div>
         </div>
     )

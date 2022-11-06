@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { createContext } from 'react'
-import { getCategories, getComments, getItem, getItems, getUsersProfilesPic } from '../API/getData'
+import { getCategories, getComments, getItem, getItems, getUserData, getUsersProfilesPic } from '../API/getData'
 import { useFetching } from '../hooks/useFetching'
 
 export const DataContext = createContext(null)
@@ -20,22 +20,33 @@ export const DataProvider = ({ children }) => {
 
 
     const [fetchItems, isLoading, error] = useFetching(async () => {
-        let fetchedItems = await getItems()
+        const fetchedItems = await getItems()
         setItems(fetchedItems)
-        let fetchedCategories = await getCategories()
+        const fetchedCategories = await getCategories()
         setCategories(fetchedCategories)
-        let fetchedComments = await getComments()
+        const fetchedComments = await getComments()
         setComments(fetchedComments)
-        let fetchedUsersProfiles = await getUsersProfilesPic()
+        const fetchedUsersProfiles = await getUsersProfilesPic()
         setUsersProfilesPic(fetchedUsersProfiles)
-        if (localStorage.getItem('authToken')) {
-            setAuthToken(localStorage.getItem('authToken'))
-        }
+        defineUser()
     })
+
+    const defineUser = async () => {
+        if (localStorage.getItem('authToken')) {
+            const token = localStorage.getItem('authToken')
+            setAuthToken(token)
+            const userData = await getUserData(token)
+            setUser(userData)
+        }
+    }
 
     useEffect(() => {
         fetchItems()
     }, [])
+
+    useEffect(() => {
+        defineUser()
+    }, [authToken])
 
 
     async function signUp(newUser, redirectCallBack) {
@@ -48,8 +59,6 @@ export const DataProvider = ({ children }) => {
             body: JSON.stringify(newUser),
         })
         let EmailUsernameId = await sigUpResponse.json()
-        console.log(EmailUsernameId);
-        console.log(newUser, newUser.password, newUser.username);
         const getTokenResponse = await fetch('http://127.0.0.1:8000/api/auth/token/login/', {
             method: 'POST',
             headers: {
@@ -63,7 +72,6 @@ export const DataProvider = ({ children }) => {
         const token = await getTokenResponse.json()
         setAuthToken(token.auth_token)
         localStorage.setItem('authToken', token.auth_token)
-
         redirectCallBack()
     }
 
@@ -78,6 +86,7 @@ export const DataProvider = ({ children }) => {
         })
         setAuthToken(null)
         localStorage.removeItem('authToken')
+        setUser(null)
         redirectCallBack()
     }
 
@@ -117,7 +126,7 @@ export const DataProvider = ({ children }) => {
     }
 
 
-    const value = { items, setItems, isLoading, categories, setCategories, user, authToken, setAuthToken, signUp, signOut, cartItems, setCartItems, addToCart, isCartOpen, setCartStatus, removeFromCart, cartItemsQuantity, setCartItemsQuantity, getCartTotal, comments, itemComments, setItemComments, usersProfilesPic }
+    const value = { items, setItems, isLoading, categories, setCategories, user, setUser, authToken, setAuthToken, signUp, signOut, cartItems, setCartItems, addToCart, isCartOpen, setCartStatus, removeFromCart, cartItemsQuantity, setCartItemsQuantity, getCartTotal, comments, itemComments, setItemComments, usersProfilesPic }
 
     return <DataContext.Provider value={value}>
         {children}

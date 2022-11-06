@@ -6,9 +6,9 @@ export function RequireNoAuth({ children }) {
     const location = useLocation()
     const fromPage = location.state?.from?.pathname || '/'
     const navigate = useNavigate()
-    const { authToken } = useData()
-
-    if (authToken !== null) {
+    const { authToken, isLoading } = useData()
+    
+    if (authToken) {
         return navigate(fromPage, { replace: true })
     }
     return children
