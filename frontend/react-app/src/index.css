@@ -578,6 +578,23 @@ a {
   color: #232323;
 }
 
+.comments__comment-buttons {
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.comments__comment-buttons button {
+  padding: 5px 20px;
+  background-color: #3cb878;
+  border-radius: 24px;
+}
+
+
+.comments__comment__change {
+  margin-right: 20px;
+}
+
 .comments__add-comment {
   padding: 30px 30px;
   background-color: #f5f6f9;
@@ -1012,10 +1029,11 @@ a {
   display: flex;
 }
 
-.profile__info-form div{
+.profile__info-form div {
   margin: 10px;
   margin-left: 20px;
 }
+
 .profile__info-form input {
   margin-left: 10px;
   padding: 5px 10px;

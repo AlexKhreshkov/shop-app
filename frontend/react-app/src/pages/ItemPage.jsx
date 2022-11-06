@@ -16,16 +16,15 @@ export default function ItemPage() {
     const { slug } = useParams()
     const { items, comments, isLoading, user, authToken } = useData()
     const [item, setItem] = useState({})
+    const [itemComments, setItemCommets] = useState([])
 
     useEffect(() => {
         const item = searchItemBySlug(slug, items)
         setItem(item)
-    })
+        setItemCommets([...comments].filter(comment => comment.item_slug === slug))
+    }, [comments])
 
-    function setItemComments(comments) {
-        return [...comments].filter(comment => comment.item_slug === slug)
-    }
-    
+
     return (
         <div className="main-content">
             {isLoading
@@ -34,7 +33,6 @@ export default function ItemPage() {
                 :
                 <>
                     <Navigation />
-
                     <div className="main">
                         <div className="after-nav hr-black-line"></div>
                         <div className="item">
@@ -63,7 +61,7 @@ export default function ItemPage() {
                             </div>
                             <div className="comments">
                                 <div className="comments__wrapp">
-                                    <div className="comments__count">Comments: {setItemComments(comments).length}</div>
+                                    <div className="comments__count">Comments: {itemComments.length}</div>
                                     {authToken
                                         ?
                                         <></>
@@ -77,20 +75,25 @@ export default function ItemPage() {
                                             <span> to add comment</span>
                                         </div>
                                     }
-                                    {setItemComments(comments).map((comment) =>
+                                    {itemComments.map((comment) =>
                                         <Comment
                                             key={comment.id}
+                                            commentId={comment.id}
                                             userId={comment.user}
                                             user_name={comment.user_name}
                                             name={comment.name}
                                             text={comment.text}
                                             created={comment.created}
+                                            itemComments={itemComments}
+                                            setItemCommets={setItemCommets}
                                         />
                                     )}
                                     {authToken
                                         ?
                                         <CommentForm
                                             item={item}
+                                            itemComments={itemComments}
+                                            setItemCommets={setItemCommets}
                                         />
                                         :
                                         <></>

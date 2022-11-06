@@ -1,12 +1,12 @@
 import React from 'react'
 import { useState } from 'react'
-import { base_url, getComments } from '../../../API/getData'
+import { base_url } from '../../../API/getData'
 import { useData } from '../../../hooks/useAuth'
 import Success from '../modal/Success'
 
-export default function CommentForm({ item }) {
+export default function CommentForm({ item, itemComments, setItemCommets }) {
 
-    const { user, authToken, setComments } = useData()
+    const { user, authToken, } = useData()
     const [commentForm, setCommentForm] = useState({
         'name': user.username,
         'text': '',
@@ -21,7 +21,6 @@ export default function CommentForm({ item }) {
             user: +user.id,
             item: +item.id,
         }
-        console.log(userCommentForm);
         fetch(`${base_url}/comments/add/`, {
             method: 'POST',
             headers: {
@@ -30,21 +29,20 @@ export default function CommentForm({ item }) {
             },
             body: JSON.stringify(userCommentForm),
         })
-        const fetchedComments = await getComments()
-        setComments(fetchedComments)
+        setItemCommets([...itemComments, userCommentForm])
         setCommentForm({ ...commentForm, text: '' })
     }
 
     return (
         <div className="comments__add-comment">
-            {isSuccessModal
+            {/* {isSuccessModal
                 ?
                 <Success
                     onClick={e => setIsSuccessModal(false)}
                 />
                 :
                 <></>
-            }
+            } */}
             <a href=''></a>
             <div className="comments__add-comment-wrapp">
                 <form onSubmit={e => addComment(e)}>

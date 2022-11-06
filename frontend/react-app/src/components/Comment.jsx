@@ -1,10 +1,11 @@
 import React from 'react'
 import { useEffect } from 'react'
+import { base_url, getComments } from '../API/getData'
 import { useData } from '../hooks/useAuth'
 
-export default function Comment({ index, userId, user_name, name, text, created }) {
+export default function Comment({ commentId, userId, user_name, name, text, created, itemComments, setItemCommets }) {
 
-    const { usersProfilesPic } = useData()
+    const { usersProfilesPic, user, authToken, setComments } = useData()
 
     function getImage() {
         let image
@@ -14,6 +15,17 @@ export default function Comment({ index, userId, user_name, name, text, created 
                 return image
             }
         }
+    }
+
+    async function deleteComment() {
+        fetch(`${base_url}/comments/${commentId}/`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${authToken}`,
+            },
+        })
+        setItemCommets([...itemComments].filter(comment => comment.id !== commentId))
     }
 
     return (
@@ -29,6 +41,18 @@ export default function Comment({ index, userId, user_name, name, text, created 
                 <div className="comments__text">
                     {text}
                 </div>
+                {userId === user.id
+                    ?
+                    <div className="comments__comment-buttons">
+                        <div className="comments__comment__delete">
+                            <button onClick={() => deleteComment()}>
+                                DELETE
+                            </button>
+                        </div>
+                    </div>
+                    :
+                    <></>
+                }
             </div>
         </div>
     )

@@ -48,13 +48,13 @@ export const DataProvider = ({ children }) => {
         defineUser()
     }, [authToken])
 
-    useEffect(() => {
-        async function getcomments() {
-            const fetchedComments = await getComments()
-            setComments(fetchedComments)
-        }
-        getcomments()
-    }, [comments])
+    // useEffect(() => {
+    //     async function getcomments() {
+    //         const fetchedComments = await getComments()
+    //         setComments(fetchedComments)
+    //     }
+    //     getcomments()
+    // }, [comments])
 
     async function signUp(newUser, redirectCallBack) {
 
