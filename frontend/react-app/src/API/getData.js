@@ -50,18 +50,3 @@ export async function getUserData(authToken) {
 }
 
 
-
-// export async function getUserUserName(token) {
-//     const response = await fetch(`${base_url}/auth/users/me/`, {
-//         method: 'GET',
-//         headers: {
-//             'Content-Type': 'application/json',
-//             'Authorization': `Token ${token}`,
-//         },
-//     })
-//     let userIdEmailUsername = await response.json()
-//     const username = userIdEmailUsername.username
-//     return username
-// }
-
-

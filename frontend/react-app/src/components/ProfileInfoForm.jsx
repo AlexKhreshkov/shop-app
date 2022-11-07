@@ -1,14 +1,14 @@
 import React from 'react'
-import { useState } from 'react'
+import { base_url } from '../API/getData'
 import { useData } from '../hooks/useAuth'
 import ProfilleInfoInput from './UI/input/ProfilleInfoInput'
 
-export default function ProfileInfoForm({ fields, userInfoForm, setUserInfoForm, setIsSuccessModal }) {
+export default function ProfileInfoForm({ fields, userInfoForm, setUserInfoForm, setIsSuccessModal, profileNewPic }) {
     const { authToken, user, setUser } = useData()
 
     function updateUserInfo(e) {
         e.preventDefault()
-        fetch(`http://127.0.0.1:8000/api/profiles/${user.id}/`, {
+        fetch(`${base_url}/profiles/${user.id}/`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -16,6 +16,7 @@ export default function ProfileInfoForm({ fields, userInfoForm, setUserInfoForm,
             },
             body: JSON.stringify(userInfoForm),
         })
+        // console.log(profileNewPic);
         setUser({ ...user, ...userInfoForm })
     }
     return (

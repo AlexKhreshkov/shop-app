@@ -375,9 +375,9 @@ a {
   color: white;
 }
 
-.active {
+/* .active {
   border-bottom: 1px solid black;
-}
+} */
 
 .item {
   max-width: 1080px;
@@ -498,6 +498,13 @@ a {
   padding: 0px 20px;
 }
 
+.item__like-btn-active button {
+  border: 1px solid #eeeeee;
+  background-color: red;
+  height: 65px;
+  padding: 0px 20px;
+}
+
 .item__like-btn button:hover {
   background-color: #3cb878;
   transition: 1s;
@@ -590,6 +597,7 @@ a {
   border-radius: 24px;
 }
 
+.comments__comment__delete {}
 
 .comments__comment__change {
   margin-right: 20px;
@@ -1020,6 +1028,10 @@ a {
   height: 100px;
 }
 
+.profile__pic-update {
+  margin: 15px 10px;
+}
+
 .profile__username {
   margin-left: 20px;
   font-size: 20px;
@@ -1045,4 +1057,42 @@ a {
   margin-bottom: 20px;
   padding: 5px 20px;
   background: #3cb878;
+}
+
+.order-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.order__title {
+  font-size: 26px;
+  color: #3cb878;
+}
+
+.order__contacts {
+  font-size: 20px;
+  margin: 20px 0;
+}
+
+.order__contacts input {
+  border: 1px solid black;
+  border-radius: 12px;
+  padding: 5px;
+  margin-left: 10px;
+}
+
+.order__contacts-item {
+  margin: 20px 0;
+}
+
+.order__items-count {
+  font-size: 26px;
+}
+
+.order__total-price {
+  color: red;
+  font-size: 30px;
+  margin: 10px 0;
 }

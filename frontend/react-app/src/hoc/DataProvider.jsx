@@ -15,7 +15,6 @@ export const DataProvider = ({ children }) => {
     const [isCartOpen, setCartStatus] = useState(false)
     const [comments, setComments] = useState([])
     const [cartItemsQuantity, setCartItemsQuantity] = useState(new Map())
-    // const [itemComments, setItemComments] = useState([])
     const [usersProfilesPic, setUsersProfilesPic] = useState([])
 
 
@@ -48,13 +47,6 @@ export const DataProvider = ({ children }) => {
         defineUser()
     }, [authToken])
 
-    // useEffect(() => {
-    //     async function getcomments() {
-    //         const fetchedComments = await getComments()
-    //         setComments(fetchedComments)
-    //     }
-    //     getcomments()
-    // }, [comments])
 
     async function signUp(newUser, redirectCallBack) {
 
@@ -132,8 +124,11 @@ export const DataProvider = ({ children }) => {
         return sum
     }
 
+    const isCartEmpty = () => {
+        return !cartItems.length
+    }
 
-    const value = { items, setItems, isLoading, categories, setCategories, user, setUser, authToken, setAuthToken, signUp, signOut, cartItems, setCartItems, addToCart, isCartOpen, setCartStatus, removeFromCart, cartItemsQuantity, setCartItemsQuantity, getCartTotal, comments, usersProfilesPic, setComments }
+    const value = { items, setItems, isLoading, categories, setCategories, user, setUser, authToken, setAuthToken, signUp, signOut, cartItems, setCartItems, addToCart, isCartOpen, setCartStatus, removeFromCart, cartItemsQuantity, setCartItemsQuantity, getCartTotal, comments, usersProfilesPic, setComments, isCartEmpty }
 
     return <DataContext.Provider value={value}>
         {children}

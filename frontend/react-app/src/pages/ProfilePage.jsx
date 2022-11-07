@@ -1,5 +1,4 @@
 import React from 'react'
-import { useEffect } from 'react'
 import { useState } from 'react'
 import ProfileInfoForm from '../components/ProfileInfoForm'
 import { Loader } from '../components/UI/loader/Loader'
@@ -19,6 +18,7 @@ export default function ProfilePage() {
         phone: user.phone,
     })
     const [isSuccessModal, setIsSuccessModal] = useState(false)
+    const [profileNewPic, setProfileNewPic] = useState(null)
 
     return (
         <div className="main-content">
@@ -53,6 +53,13 @@ export default function ProfilePage() {
                                                 Username: {user.username}
                                             </div>
                                         </div>
+                                        <div className='profile__pic-update'>
+                                            <input
+                                                onChange={e => setProfileNewPic(e.target.files[0])}
+                                                type="file"
+                                                accept="image/jpeg, image/png, image/jpg">
+                                            </input>
+                                        </div>
                                     </div>
                                     <div className="profile__info-form">
                                         <ProfileInfoForm
@@ -60,6 +67,7 @@ export default function ProfilePage() {
                                             userInfoForm={userInfoForm}
                                             setUserInfoForm={setUserInfoForm}
                                             setIsSuccessModal={setIsSuccessModal}
+                                            profileNewPic={profileNewPic}
                                         />
                                     </div>
                                 </div>

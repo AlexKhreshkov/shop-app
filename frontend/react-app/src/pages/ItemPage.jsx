@@ -17,6 +17,7 @@ export default function ItemPage() {
     const { items, comments, isLoading, user, authToken } = useData()
     const [item, setItem] = useState({})
     const [itemComments, setItemCommets] = useState([])
+    // const [isLiked, setIsLiked] = useState()
 
     useEffect(() => {
         const item = searchItemBySlug(slug, items)
