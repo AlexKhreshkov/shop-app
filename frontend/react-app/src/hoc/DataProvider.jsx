@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { createContext } from 'react'
-import { getCategories, getComments, getItem, getItems, getUserData, getUsersProfilesPic } from '../API/getData'
+import { getCategories, getComments, getItem, getItems, getOrders, getUserData, getUsersProfilesPic } from '../API/getData'
 import { useFetching } from '../hooks/useFetching'
 
 export const DataContext = createContext(null)
@@ -16,6 +16,7 @@ export const DataProvider = ({ children }) => {
     const [comments, setComments] = useState([])
     const [cartItemsQuantity, setCartItemsQuantity] = useState(new Map())
     const [usersProfilesPic, setUsersProfilesPic] = useState([])
+    const [usersOrders, setUsersOrders] = useState([])
 
 
     const [fetchItems, isLoading, error] = useFetching(async () => {
@@ -28,6 +29,7 @@ export const DataProvider = ({ children }) => {
         const fetchedUsersProfiles = await getUsersProfilesPic()
         setUsersProfilesPic(fetchedUsersProfiles)
         defineUser()
+
     })
 
     const defineUser = async () => {
@@ -36,6 +38,8 @@ export const DataProvider = ({ children }) => {
             setAuthToken(token)
             const userData = await getUserData(token)
             setUser(userData)
+            const fetchedUserOrders = await getOrders(token)
+            setUsersOrders(fetchedUserOrders)
         }
     }
 
@@ -128,7 +132,7 @@ export const DataProvider = ({ children }) => {
         return !cartItems.length
     }
 
-    const value = { items, setItems, isLoading, categories, setCategories, user, setUser, authToken, setAuthToken, signUp, signOut, cartItems, setCartItems, addToCart, isCartOpen, setCartStatus, removeFromCart, cartItemsQuantity, setCartItemsQuantity, getCartTotal, comments, usersProfilesPic, setComments, isCartEmpty }
+    const value = { items, setItems, isLoading, categories, setCategories, user, setUser, authToken, setAuthToken, signUp, signOut, cartItems, setCartItems, addToCart, isCartOpen, setCartStatus, removeFromCart, cartItemsQuantity, setCartItemsQuantity, getCartTotal, comments, usersProfilesPic, setComments, isCartEmpty, usersOrders, setUsersOrders }
 
     return <DataContext.Provider value={value}>
         {children}

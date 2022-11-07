@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import ProfileInfoForm from '../components/ProfileInfoForm'
+import ProfileOrders from '../components/ProfileOrders'
 import { Loader } from '../components/UI/loader/Loader'
 import Success from '../components/UI/modal/Success'
 import { useData } from '../hooks/useAuth'
@@ -71,10 +72,7 @@ export default function ProfilePage() {
                                         />
                                     </div>
                                 </div>
-                                <div className="profile__orders">
-                                    <div className="profile__orders-title">Your Orders: 0</div>
-                                    <div className="profile__orders-title">Your Orders</div>
-                                </div>
+                                <ProfileOrders />
                             </div>
                         </div>
                     </div>

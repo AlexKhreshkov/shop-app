@@ -26,7 +26,7 @@ export async function getUsersProfilesPic() {
     return usersProfiles
 }
 
-export async function getUserData(authToken) {
+async function getUserInfoByToken(authToken) {
     const userIfnoResponse = await fetch(`${base_url}/auth/users/me/`, {
         method: 'GET',
         headers: {
@@ -35,18 +35,35 @@ export async function getUserData(authToken) {
         },
     })
     let userIdEmailUsername = await userIfnoResponse.json()
-    const profileID = userIdEmailUsername.id
+    return userIdEmailUsername
+}
 
+export async function getUserData(authToken) {
+    let userIdEmailUsername = await getUserInfoByToken(authToken)
+    const profileID = userIdEmailUsername.id
     const userProfileResponse = await fetch(`${base_url}/profiles/${profileID}/`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Token ${authToken}`,
         },
-    })  
+    })
     const userProfile = await userProfileResponse.json()
     const userData = { ...userIdEmailUsername, ...userProfile }
     return userData
 }
 
+export async function getOrders(authToken) {
+    let userIdEmailUsername = await getUserInfoByToken(authToken)
+    const ordersResponse = await fetch(`${base_url}/orders/`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${authToken}`,
+        },
+    })
+    const orders = await ordersResponse.json()
+    return orders.filter(order => order.user_id === userIdEmailUsername.id)
+}
 
+    

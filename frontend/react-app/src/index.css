@@ -1013,7 +1013,7 @@ a {
 .profile__personal-info {
   display: flex;
   flex-direction: column;
-  flex: 0 0 50%;
+  flex: 0 0 30%;
   border-right: 1px solid black;
 }
 
@@ -1057,6 +1057,45 @@ a {
   margin-bottom: 20px;
   padding: 5px 20px;
   background: #3cb878;
+}
+
+.profile__orders-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  flex: 1 1 auto;
+}
+
+.profile__orders-title {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.profile__order-item {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px;
+  align-items: center;
+}
+
+.profile__order {
+  border: 1px solid black;
+  border-radius: 16px;
+  margin: 20px 10px;
+}
+
+.profile__order-number {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.profile__order-item-quantity {
+  display: flex;
+}
+
+.profile__order-item-img img {
+  width: 100px;
+  height: 100px;
 }
 
 .order-container {
