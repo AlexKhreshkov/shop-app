@@ -79,7 +79,7 @@ export default function ItemsListPage() {
                                                 category_name={item.category_name}
                                                 image={item.image}
                                                 availableCount={item.available_count}
-                                                likes={item.likes}
+                                                likes={item.likes.length}
                                             />
                                         )
                                     }

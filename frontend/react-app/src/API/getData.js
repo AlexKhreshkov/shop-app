@@ -83,3 +83,7 @@ export async function getOrdersStatuses(authToken) {
     const statuses = await statusesResponse.json()
     return statuses
 }
+
+// export function addLikeToItem(){
+    
+// }

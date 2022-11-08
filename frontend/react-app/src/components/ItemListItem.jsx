@@ -17,7 +17,6 @@ export default function ItemListItem({ id, title, slug, body, price, category_na
                 <div className="items__item-categories">{category_name}</div>
                 <div className="item__buttons">
                     <AddToCartBtn slug={slug} />
-                    <LikeBtn />
                 </div>
             </div>
         </div>

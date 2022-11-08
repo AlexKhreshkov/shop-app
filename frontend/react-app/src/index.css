@@ -505,10 +505,6 @@ a {
   padding: 0px 20px;
 }
 
-.item__like-btn button:hover {
-  background-color: #3cb878;
-  transition: 1s;
-}
 
 .after-nav {
   margin-bottom: 15px;

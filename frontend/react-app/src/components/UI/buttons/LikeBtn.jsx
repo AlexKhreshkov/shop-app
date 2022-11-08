@@ -1,10 +1,29 @@
 import React from 'react'
 
-export default function LikeBtn() {
+export default function LikeBtn({ childern, isLiked, ...props }) {
+
     return (
-        <div className="item__like-btn">
-            <button><img src="/img/like.png" alt="" /></button>
-        </div>
+        <>
+            {isLiked ?
+                <div className="item__like-btn-active">
+                    <button
+                        {...props}
+                    >
+                        <img src="/img/like.png" alt="" />
+                        {childern}
+                    </button>
+                </div>
+                :
+                <div className="item__like-btn">
+                    <button
+                        {...props}
+                    >
+                        <img src="/img/like.png" alt="" />
+                        {childern}
+                    </button>
+                </div>
+            }
+        </>
     )
 }
 

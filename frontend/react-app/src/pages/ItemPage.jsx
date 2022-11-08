@@ -9,6 +9,7 @@ import Comment from '../components/Comment'
 import { Loader } from '../components/UI/loader/Loader'
 import CommentForm from '../components/UI/forms/CommentForm'
 import Navigation from './Navigation'
+import { base_url } from '../API/getData'
 
 
 export default function ItemPage() {
@@ -17,14 +18,59 @@ export default function ItemPage() {
     const { items, comments, isLoading, user, authToken } = useData()
     const [item, setItem] = useState({})
     const [itemComments, setItemCommets] = useState([])
-    // const [isLiked, setIsLiked] = useState()
+    const [isLiked, setIsLiked] = useState(null)
 
     useEffect(() => {
-        const item = searchItemBySlug(slug, items)
-        setItem(item)
+        const searchedItem = searchItemBySlug(slug, items)
+        setItem(searchedItem)
         setItemCommets([...comments].filter(comment => comment.item_slug === slug))
     }, [comments])
 
+    useEffect(() => {
+        async function preload() {
+            for (let userId of item.likes) {
+                if (userId === user.id) {
+                    setIsLiked(true)
+                    break
+                }
+            }
+        }
+        preload()
+    }, [item])
+
+
+    async function addLikeToItem() {
+        if (!isLiked) {
+            const newItemLikes = [...item.likes, user.id]
+            fetch(`${base_url}/items/${slug}/update/`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${authToken}`,
+                },
+                body: JSON.stringify({
+                    likes: newItemLikes,
+                }),
+            })
+            setIsLiked(true)
+            item.likes = newItemLikes
+        }
+        else {
+            const newItemLikes = [...item.likes].filter(elem => elem !== user.id)
+            fetch(`${base_url}/items/${slug}/update/`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${authToken}`,
+                },
+                body: JSON.stringify({
+                    likes: newItemLikes,
+                }),
+            })
+            setIsLiked(false)
+            item.likes = newItemLikes
+        }
+    }
 
     return (
         <div className="main-content">
@@ -46,7 +92,12 @@ export default function ItemPage() {
                                         <div className="item__title">{item.title}</div>
                                         <div className="item__price">Price: {item.price}$</div>
                                         <div className="item__rating">Rating 5</div>
-                                        <div className="item__likes">Likes: {item.likes}</div>
+                                        {item.likes
+                                            ?
+                                            <div className="item__likes">Likes: {item.likes.length}</div>
+                                            :
+                                            <div className="item__likes">Likes: </div>
+                                        }
                                         <div className="item__text">Description: {item.body}</div>
                                         <div className="item__tags">
                                             <div className="item__tags">
@@ -55,7 +106,10 @@ export default function ItemPage() {
                                         </div>
                                         <div className="item__buttons">
                                             <AddToCartBtn slug={slug} />
-                                            <LikeBtn />
+                                            <LikeBtn
+                                                isLiked={isLiked}
+                                                onClick={() => addLikeToItem()}
+                                            />
                                         </div>
                                     </div>
                                 </div>
