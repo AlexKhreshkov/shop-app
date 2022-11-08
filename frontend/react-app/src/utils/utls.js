@@ -30,3 +30,11 @@ export function setTrueStateCategories(categories) {
     }
     return obj
 }
+
+export function getOrderStatusName(ordersStatuses, orderStatusId) {
+    for (let status of ordersStatuses) {
+        if (status.id === orderStatusId) {
+            return status.name
+        }
+    }
+}

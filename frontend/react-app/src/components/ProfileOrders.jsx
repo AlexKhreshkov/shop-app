@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useData } from '../hooks/useAuth'
+import { getOrderStatusName } from '../utils/utls'
 import ProfileOrder from './ProfileOrder'
 
 export default function ProfileOrders() {
 
-    const { usersOrders } = useData()
+    const { usersOrders, ordersStatuses } = useData()
 
     return (
         <div className="profile__orders-container">
@@ -16,6 +17,7 @@ export default function ProfileOrders() {
                         key={order.id}
                         id={order.id}
                         price={order.total_cost}
+                        status={getOrderStatusName(ordersStatuses, order.status)}
                     />
                 )}
             </div>

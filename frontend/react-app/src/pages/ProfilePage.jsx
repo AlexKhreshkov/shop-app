@@ -20,7 +20,6 @@ export default function ProfilePage() {
     })
     const [isSuccessModal, setIsSuccessModal] = useState(false)
     const [profileNewPic, setProfileNewPic] = useState(null)
-
     return (
         <div className="main-content">
             {isLoading

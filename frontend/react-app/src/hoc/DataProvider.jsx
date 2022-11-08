@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { createContext } from 'react'
-import { getCategories, getComments, getItem, getItems, getOrders, getUserData, getUsersProfilesPic } from '../API/getData'
+import { getCategories, getComments, getItem, getItems, getUserOrders, getUserData, getUsersProfilesPic, getOrdersStatuses } from '../API/getData'
 import { useFetching } from '../hooks/useFetching'
 
 export const DataContext = createContext(null)
@@ -17,6 +17,7 @@ export const DataProvider = ({ children }) => {
     const [cartItemsQuantity, setCartItemsQuantity] = useState(new Map())
     const [usersProfilesPic, setUsersProfilesPic] = useState([])
     const [usersOrders, setUsersOrders] = useState([])
+    const [ordersStatuses, setOrdersStatuses] = useState([])
 
 
     const [fetchItems, isLoading, error] = useFetching(async () => {
@@ -38,8 +39,10 @@ export const DataProvider = ({ children }) => {
             setAuthToken(token)
             const userData = await getUserData(token)
             setUser(userData)
-            const fetchedUserOrders = await getOrders(token)
+            const fetchedUserOrders = await getUserOrders(token)
             setUsersOrders(fetchedUserOrders)
+            const fetchedOrdersStatuses = await getOrdersStatuses(token)
+            setOrdersStatuses(fetchedOrdersStatuses)
         }
     }
 
@@ -50,7 +53,6 @@ export const DataProvider = ({ children }) => {
     useEffect(() => {
         defineUser()
     }, [authToken])
-
 
     async function signUp(newUser, redirectCallBack) {
 
@@ -132,7 +134,7 @@ export const DataProvider = ({ children }) => {
         return !cartItems.length
     }
 
-    const value = { items, setItems, isLoading, categories, setCategories, user, setUser, authToken, setAuthToken, signUp, signOut, cartItems, setCartItems, addToCart, isCartOpen, setCartStatus, removeFromCart, cartItemsQuantity, setCartItemsQuantity, getCartTotal, comments, usersProfilesPic, setComments, isCartEmpty, usersOrders, setUsersOrders }
+    const value = { items, setItems, isLoading, categories, setCategories, user, setUser, authToken, setAuthToken, signUp, signOut, cartItems, setCartItems, addToCart, isCartOpen, setCartStatus, removeFromCart, cartItemsQuantity, setCartItemsQuantity, getCartTotal, comments, usersProfilesPic, setComments, isCartEmpty, usersOrders, setUsersOrders, ordersStatuses }
 
     return <DataContext.Provider value={value}>
         {children}

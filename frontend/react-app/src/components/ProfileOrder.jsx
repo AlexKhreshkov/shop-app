@@ -5,9 +5,9 @@ import { base_url } from '../API/getData'
 import { useData } from '../hooks/useAuth'
 import ProfileOrderItems from './ProfileOrderItems'
 
-export default function ProfileOrder({ id, price }) {
+export default function ProfileOrder({ id, price, status }) {
 
-    const { authToken} = useData()
+    const { authToken } = useData()
     const [orderItems, setOrderItems] = useState([])
 
     async function getItemsToOrder(orderId) {
@@ -37,7 +37,10 @@ export default function ProfileOrder({ id, price }) {
             <ProfileOrderItems
                 orderItems={orderItems}
             />
-            <div style={{ color: '#3cb878', margin: '10px 0' }}>
+            <div style={{ fontSize: '20px' }}>
+                Status: <span style={{ color: 'blue', textDecoration: 'underline' }}>{status}</span>
+            </div>
+            <div style={{ color: '#3cb878', margin: '10px 0', fontSize: '20px' }}>
                 Total: {price}$
             </div>
         </div>

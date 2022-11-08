@@ -53,8 +53,7 @@ export async function getUserData(authToken) {
     return userData
 }
 
-export async function getOrders(authToken) {
-    let userIdEmailUsername = await getUserInfoByToken(authToken)
+export async function getAllOrders(authToken) {
     const ordersResponse = await fetch(`${base_url}/orders/`, {
         method: 'GET',
         headers: {
@@ -63,7 +62,24 @@ export async function getOrders(authToken) {
         },
     })
     const orders = await ordersResponse.json()
+    return orders
+}
+
+
+export async function getUserOrders(authToken) {
+    const orders = await getAllOrders(authToken)
+    let userIdEmailUsername = await getUserInfoByToken(authToken)
     return orders.filter(order => order.user_id === userIdEmailUsername.id)
 }
 
-    
+export async function getOrdersStatuses(authToken) {
+    const statusesResponse = await fetch(`${base_url}/orders-statuses/`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${authToken}`,
+        },
+    })
+    const statuses = await statusesResponse.json()
+    return statuses
+}
