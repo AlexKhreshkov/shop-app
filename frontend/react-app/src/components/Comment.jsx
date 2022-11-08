@@ -41,17 +41,24 @@ export default function Comment({ commentId, userId, user_name, name, text, crea
                 <div className="comments__text">
                     {text}
                 </div>
-                {userId === user.id
+                {!user
                     ?
-                    <div className="comments__comment-buttons">
-                        <div className="comments__comment__delete">
-                            <button onClick={() => deleteComment()}>
-                                DELETE
-                            </button>
-                        </div>
-                    </div>
-                    :
                     <></>
+                    :
+                    <>
+                        {userId === user.id
+                            ?
+                            <div className="comments__comment-buttons">
+                                <div className="comments__comment__delete">
+                                    <button onClick={() => deleteComment()}>
+                                        DELETE
+                                    </button>
+                                </div>
+                            </div>
+                            :
+                            <></>
+                        }
+                    </>
                 }
             </div>
         </div>
