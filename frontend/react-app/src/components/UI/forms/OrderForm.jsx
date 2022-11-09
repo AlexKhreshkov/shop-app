@@ -11,7 +11,7 @@ import CartItem from '../modal/CartItem'
 
 export default function OrderForm() {
 
-    const { user, cartItems, setCartItems, cartItemsQuantity, getCartTotal, isCartEmpty, authToken, userCart } = useData()
+    const { user, cartItems, setCartItems, cartItemsQuantity, getCartTotal, isCartEmpty, authToken, userCart, usersOrders, setUsersOrders } = useData()
     const [orderForm, setOrderForm] = useState({
         full_name: `${user.name} ${user.surname}`,
         delivery_address: user.address,
@@ -57,6 +57,18 @@ export default function OrderForm() {
                     quantity: quantity
                 }),
             })
+            const newOrder = {
+                id: lastOrderId,
+                user: user.id,
+                user_id: user.id,
+                status: 1,
+                total_cost: getCartTotal(cartItemsQuantity),
+                delivery_address: orderForm.delivery_address,
+                full_name: orderForm.full_name,
+                phone: orderForm.phone,
+                created: new Date().toISOString().split('T')[0]
+            }
+            setUsersOrders([...usersOrders, newOrder])
         }
         for (let cartItem of cartItems) {
             deleteUserItemFromCart(authToken, cartItem, userCart)

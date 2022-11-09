@@ -8,7 +8,7 @@ export default function ProfileOrders() {
 
     const { usersOrders, ordersStatuses } = useData()
 
-    
+    console.log(usersOrders);
     // useEffect(() => {
         
     // }, [usersOrders.length])
