@@ -1,7 +1,7 @@
 <h1> Ecommerce online shop </h1>
 
 Ecommerce online shop is an app allows automatize products purchase via the Internet. It allows to show shop's products, product's search, product's detail view, 
-make an order from cart, registration, make profile, leave comments to the products.
+make an order from cart, registration, make profile, leave comments/like products to the products.
 
 <h1>Architecture</h1>
 <h3>Built with:</h3>
@@ -18,6 +18,7 @@ make an order from cart, registration, make profile, leave comments to the produ
 Bulit with React v.18.2.0 and ReactRouter v.6
 
 src - frontend main app folder
+
 Routes: 
 <ol>
   <li> / - main page </li>
@@ -32,7 +33,9 @@ Routes:
 
 <h3>Backend:</h3>
 
-Built with additon of Django Framework - Django Rest Framework. Library for auth - Djoser(token authoriztion).
+Built with additon of Django Framework - Django Rest Framework. 
+
+Library for auth - Djoser(token authoriztion).
 
 API Endpoints: 
 <ol>
@@ -58,6 +61,9 @@ API Endpoints:
 
 <h3>Database Schema </h3>
 For storing data were chosen PostgreSQL.
-![image](https://user-images.githubusercontent.com/102662863/200764917-c256bc02-27af-45f7-9d85-5b01a600eea0.png)
+
+Database Diagram: 
+
+![image](https://user-images.githubusercontent.com/102662863/200765822-8c6ae9b1-cdc1-496c-b3b9-6d5a84bed7d4.png)
 
 
