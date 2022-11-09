@@ -15,5 +15,49 @@ make an order from cart, registration, make profile, leave comments to the produ
   </li>
 </ol>
 <h3>Frontend:</h3>
+Bulit with React v.18.2.0 and ReactRouter v.6
+
+src - frontend main app folder
+Routes: 
+<ol>
+  <li> / - main page </li>
+  <li> /items - all items page </li>
+  <li> /items/:item_slug - item detail page with users comments </li>
+  <li> /about - about page </li>
+  <li> /signup - signup page </li>
+  <li> /login - login page </li>
+  <li> /profile - urer's profile page with his personal info and his orders</li>
+  <li> /order - order page</li>
+</ol>
 
 <h3>Backend:</h3>
+
+Built with additon of Django Framework - Django Rest Framework. Library for auth - Djoser(token authoriztion).
+
+API Endpoints: 
+<ol>
+    <li>'api/items/'</li>
+    <li>'api/items/slug:slug/'</li>
+    <li>'api/items/slug:slug/update/'</li>
+    <li>'api/categories/'</li>
+    <li>'api/comments/'</li>
+    <li>'api/comments/add/'</li>
+    <li>'api/comments/int:pk/'</li>
+    <li>'api/profiles/'</li>
+    <li>'api/profiles/int:pk/'</li>
+    <li>'api/carts/'</li>
+    <li>'api/carts/int:pk/'</li>
+    <li>'api/carts-items/'</li>
+    <li>'api/carts-items/int:pk/'</li>
+    <li>'api/orders-items/'</li>
+    <li>'api/orders-items/create/'</li>
+    <li>'api/orders/'</li>
+    <li>'api/orders-statuses/'</li>
+    <li>'api/auth/'</li>
+</ol>
+
+<h3>Database Schema </h3>
+For storing data were chosen PostgreSQL.
+![image](https://user-images.githubusercontent.com/102662863/200764917-c256bc02-27af-45f7-9d85-5b01a600eea0.png)
+
+
