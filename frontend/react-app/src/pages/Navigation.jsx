@@ -27,6 +27,7 @@ export default function Navigation() {
                     :
                     <>
                         <div className="nav__item"><NavLink end to='/signup'>SignUp</NavLink></div>
+                        <div className="nav__item"><NavLink end to='/login'>Login</NavLink></div>
                     </>
                 }
             </div>

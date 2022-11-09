@@ -50,7 +50,7 @@ export default function SignUp() {
                         {fromPage !== '/' ?
                             <div style={{ textAlign: 'center', fontSize: '20px', marginTop: '40px' }}>
                                 <div style={{ textDecoratzon: 'underline', marginBottom: '10px' }}>
-                                    First, SignUp
+                                    First, SignUp/Login 
                                 </div>
                                 to access {fromPage}
                             </div>

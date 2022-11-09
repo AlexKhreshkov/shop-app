@@ -27,9 +27,9 @@ export default function ItemsListPage() {
                 return [...items].sort((a, b) => a.price - b.price)
             }
             if (selectedSort === 'likes') {
-                return [...items].sort((a, b) => b.likes - a.likes)
+                return [...items].sort((a, b) => b.likes.length - a.likes.length)
             }
-        }
+        }   
         return items
     }, [selectedSort, items])
 

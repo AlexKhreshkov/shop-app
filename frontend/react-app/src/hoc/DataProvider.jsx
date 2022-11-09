@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { createContext } from 'react'
-import { getCategories, getComments, getItems, getUserOrders, getUserData, getUsersProfilesPic, getOrdersStatuses, createUserCart, checkUserCart, getUserCartItemQuantity, addItemToUserCart, deleteUserItemFromCart } from '../API/getData'
+import { getCategories, getComments, getItems, getUserOrders, getUserData, getUsersProfilesPic, getOrdersStatuses, createUserCart, checkUserCart, getUserCartItemQuantity, addItemToUserCart, deleteUserItemFromCart, base_url } from '../API/getData'
 import { useFetching } from '../hooks/useFetching'
 
 
@@ -111,6 +111,23 @@ export const DataProvider = ({ children }) => {
         redirectCallBack()
     }
 
+    const login = async (userLoginForm, redirectCallBack) => {
+        const getTokenResponse = await fetch(`${base_url}/auth/token/login/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: userLoginForm.userName,
+                password: userLoginForm.password,
+            })
+        })
+        const token = await getTokenResponse.json()
+        setAuthToken(token.auth_token)
+        localStorage.setItem('authToken', token.auth_token)
+        redirectCallBack()
+    }
+
     const addToCart = (itemSlug) => {
         let item
         for (let i of items) {
@@ -171,7 +188,7 @@ export const DataProvider = ({ children }) => {
         return !cartItems.length
     }
 
-    const value = { items, setItems, isLoading, categories, setCategories, user, setUser, authToken, setAuthToken, signUp, signOut, cartItems, setCartItems, addToCart, isCartOpen, setCartStatus, removeFromCart, cartItemsQuantity, setCartItemsQuantity, getCartTotal, comments, usersProfilesPic, setComments, isCartEmpty, usersOrders, setUsersOrders, ordersStatuses, userCart }
+    const value = { items, setItems, isLoading, categories, setCategories, user, setUser, authToken, setAuthToken, signUp, signOut, cartItems, setCartItems, addToCart, isCartOpen, setCartStatus, removeFromCart, cartItemsQuantity, setCartItemsQuantity, getCartTotal, comments, usersProfilesPic, setComments, isCartEmpty, usersOrders, setUsersOrders, ordersStatuses, userCart, login }
 
     return <DataContext.Provider value={value}>
         {children}

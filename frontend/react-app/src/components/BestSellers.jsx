@@ -21,7 +21,7 @@ export default function BestSellers({ items }) {
                             title={item.title}
                             img={item.image}
                             price={item.price}
-                            likes={item.likes}
+                            likes={item.likes.length}
                             slug={item.slug}
                         />
                     )

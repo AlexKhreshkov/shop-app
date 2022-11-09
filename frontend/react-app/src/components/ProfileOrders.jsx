@@ -8,10 +8,6 @@ export default function ProfileOrders() {
 
     const { usersOrders, ordersStatuses } = useData()
 
-    console.log(usersOrders);
-    // useEffect(() => {
-        
-    // }, [usersOrders.length])
 
     return (
         <div className="profile__orders-container">
