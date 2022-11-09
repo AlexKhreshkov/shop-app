@@ -716,13 +716,31 @@ a {
   width: 20%;
 }
 
+.items__categories-input {
+  margin: 10px 0;
+}
+
+.items__categories-price-filter input {
+  border: 1px solid black;
+  width: 50px;
+  padding: 2px 0;
+  padding-left: 5px;
+
+}
+
+.items__categories-price-filter-title {
+  font-size: 20px;
+  margin: 20px 0;
+}
+
 .items__categories-title {
-  font-size: 14px;
+  font-size: 25px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: #242628;
   margin-bottom: 20px;
 }
+
 
 .items__categories-list ul li {
   margin-bottom: 10px;
@@ -827,7 +845,6 @@ a {
   background: url(../public/img/search.png) 5px 10px no-repeat;
   border-bottom: 1px solid black;
   border-radius: 25%;
-
 }
 
 .nav__search:hover {
@@ -844,6 +861,7 @@ a {
   width: 300px;
   border-bottom: 1px solid green;
 }
+
 
 .items-detail-wrap {
   max-width: 80%;

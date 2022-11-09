@@ -8,6 +8,11 @@ export default function ProfileOrders() {
 
     const { usersOrders, ordersStatuses } = useData()
 
+    
+    // useEffect(() => {
+        
+    // }, [usersOrders.length])
+
     return (
         <div className="profile__orders-container">
             <div className="profile__orders-title">Your Orders: {usersOrders.length}</div>

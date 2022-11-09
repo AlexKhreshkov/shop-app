@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { base_url, getAllOrders } from '../../../API/getData'
+import { base_url, deleteUserItemFromCart, getAllOrders } from '../../../API/getData'
 import { useData } from '../../../hooks/useAuth'
 import BlackLine from '../../../pages/BlackLine'
 import MyButton from '../buttons/MyButton'
@@ -11,7 +11,7 @@ import CartItem from '../modal/CartItem'
 
 export default function OrderForm() {
 
-    const { user, cartItems, setCartItems, cartItemsQuantity, getCartTotal, isCartEmpty, authToken } = useData()
+    const { user, cartItems, setCartItems, cartItemsQuantity, getCartTotal, isCartEmpty, authToken, userCart } = useData()
     const [orderForm, setOrderForm] = useState({
         full_name: `${user.name} ${user.surname}`,
         delivery_address: user.address,
@@ -57,6 +57,9 @@ export default function OrderForm() {
                     quantity: quantity
                 }),
             })
+        }
+        for (let cartItem of cartItems) {
+            deleteUserItemFromCart(authToken, cartItem, userCart)
         }
         setCartItems([])
         navigate('/profile')

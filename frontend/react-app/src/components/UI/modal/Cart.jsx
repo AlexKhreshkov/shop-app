@@ -16,7 +16,7 @@ export default function Cart() {
     useEffect(() => {
         getCartTotal(cartItemsQuantity)
     }, [cartItems.length])
-
+    
     return (
         <>
             {isCartOpen

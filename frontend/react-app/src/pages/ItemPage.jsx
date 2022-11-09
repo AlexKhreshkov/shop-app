@@ -21,14 +21,11 @@ export default function ItemPage() {
     const [isLiked, setIsLiked] = useState(null)
 
     useEffect(() => {
-        const searchedItem = searchItemBySlug(slug, items)
-        setItem(searchedItem)
-        setItemCommets([...comments].filter(comment => comment.item_slug === slug))
-    }, [comments])
-
-    useEffect(() => {
         async function preload() {
-            for (let userId of item.likes) {
+            const searchedItem = await searchItemBySlug(slug, items)
+            setItem(searchedItem)
+            setItemCommets([...comments].filter(comment => comment.item_slug === slug))
+            for (let userId of searchedItem.likes) {
                 if (userId === user.id) {
                     setIsLiked(true)
                     break
@@ -36,20 +33,20 @@ export default function ItemPage() {
             }
         }
         preload()
-    }, [item])
+    }, [comments])
 
 
     async function addLikeToItem() {
         if (!isLiked) {
             const newItemLikes = [...item.likes, user.id]
-            fetch(`${base_url}/items/${slug}/update/`, {
+            await fetch(`${base_url}/items/${slug}/update/`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Token ${authToken}`,
                 },
                 body: JSON.stringify({
-                    likes: newItemLikes,
+                    likes: [...item.likes, user.id],
                 }),
             })
             setIsLiked(true)

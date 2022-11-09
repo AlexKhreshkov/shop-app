@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
+import NavSearch from '../components/UI/search/NavSearch'
 import { useAuth, useData } from '../hooks/useAuth'
-import { getUserUserName } from '../API/getData'
 
 export default function Navigation() {
 
@@ -30,9 +30,7 @@ export default function Navigation() {
                     </>
                 }
             </div>
-            <div className="nav__search">
-                <input type="text" />
-            </div>
+            <NavSearch/>
             <div className="nav__icons">
                 <div className="nav__cart-content">
                     {cartItems.length ?

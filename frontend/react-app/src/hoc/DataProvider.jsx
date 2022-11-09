@@ -1,8 +1,9 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { createContext } from 'react'
-import { getCategories, getComments, getItem, getItems, getUserOrders, getUserData, getUsersProfilesPic, getOrdersStatuses } from '../API/getData'
+import { getCategories, getComments, getItems, getUserOrders, getUserData, getUsersProfilesPic, getOrdersStatuses, createUserCart, checkUserCart, getUserCartItemQuantity, addItemToUserCart, deleteUserItemFromCart } from '../API/getData'
 import { useFetching } from '../hooks/useFetching'
+
 
 export const DataContext = createContext(null)
 export const DataProvider = ({ children }) => {
@@ -18,6 +19,7 @@ export const DataProvider = ({ children }) => {
     const [usersProfilesPic, setUsersProfilesPic] = useState([])
     const [usersOrders, setUsersOrders] = useState([])
     const [ordersStatuses, setOrdersStatuses] = useState([])
+    const [userCart, setUserCart] = useState({})
 
 
     const [fetchItems, isLoading, error] = useFetching(async () => {
@@ -29,7 +31,7 @@ export const DataProvider = ({ children }) => {
         setComments(fetchedComments)
         const fetchedUsersProfiles = await getUsersProfilesPic()
         setUsersProfilesPic(fetchedUsersProfiles)
-        defineUser()
+        defineUser(fetchedItems)
 
     })
 
@@ -43,6 +45,20 @@ export const DataProvider = ({ children }) => {
             setUsersOrders(fetchedUserOrders)
             const fetchedOrdersStatuses = await getOrdersStatuses(token)
             setOrdersStatuses(fetchedOrdersStatuses)
+            let userCart = await checkUserCart(token, userData)
+            if (!userCart) {
+                userCart = await createUserCart(token, userData)
+            }
+            // {
+            //     "id": 3,
+            //     "user": 16,
+            //     "total_cost": 123.0
+            // }
+            setUserCart(userCart)
+            const fetchedItems = await getItems()
+            const userCartItemQuantity = await getUserCartItemQuantity(authToken, userCart, fetchedItems)
+            setCartItemsQuantity(userCartItemQuantity)
+            setCartItems([...userCartItemQuantity.keys()])
         }
     }
 
@@ -103,10 +119,27 @@ export const DataProvider = ({ children }) => {
                 break
             }
         }
-        if (!cartItems.includes(item)) {
+        let isInCartItems = false
+        for (let cartItem of cartItems) {
+            if (cartItem.id === item.id) {
+                isInCartItems = true
+                break
+            }
+        }
+        if (!isInCartItems) {
             setCartItems([...cartItems, item])
             setCartItemsQuantity(new Map(cartItemsQuantity.set(item, 1)))
+            if (user) {
+                addItemToUserCart(authToken, userCart, item)
+            }
         }
+        // if (!cartItems.includes(item.id)) {
+        //     setCartItems([...cartItems, item])
+        //     // if (authToken) {
+        //     //     addItemToCart(authToken, userCart, item)
+        //     // }
+        //     setCartItemsQuantity(new Map(cartItemsQuantity.set(item, 1)))
+        // } 
     }
 
     const removeFromCart = (itemSlug) => {
@@ -117,8 +150,12 @@ export const DataProvider = ({ children }) => {
                 break
             }
         }
+        if (user) {
+            deleteUserItemFromCart(authToken, item, userCart)
+        }
         setCartItems(cartItems.filter((element) => element !== item))
-        setCartItemsQuantity(new Map(cartItemsQuantity.delete(item)))
+
+        // setCartItemsQuantity(new Map(cartItemsQuantity.delete(item)))
     }
 
     const getCartTotal = (cartItemsQuantity) => {
@@ -134,7 +171,7 @@ export const DataProvider = ({ children }) => {
         return !cartItems.length
     }
 
-    const value = { items, setItems, isLoading, categories, setCategories, user, setUser, authToken, setAuthToken, signUp, signOut, cartItems, setCartItems, addToCart, isCartOpen, setCartStatus, removeFromCart, cartItemsQuantity, setCartItemsQuantity, getCartTotal, comments, usersProfilesPic, setComments, isCartEmpty, usersOrders, setUsersOrders, ordersStatuses }
+    const value = { items, setItems, isLoading, categories, setCategories, user, setUser, authToken, setAuthToken, signUp, signOut, cartItems, setCartItems, addToCart, isCartOpen, setCartStatus, removeFromCart, cartItemsQuantity, setCartItemsQuantity, getCartTotal, comments, usersProfilesPic, setComments, isCartEmpty, usersOrders, setUsersOrders, ordersStatuses, userCart }
 
     return <DataContext.Provider value={value}>
         {children}

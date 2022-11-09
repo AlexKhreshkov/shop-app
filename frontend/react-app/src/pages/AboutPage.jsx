@@ -1,4 +1,6 @@
 import React from 'react'
+import { useEffect } from 'react'
+import { useState } from 'react'
 import { Loader } from '../components/UI/loader/Loader'
 import { useData } from '../hooks/useAuth'
 import BlackLine from './BlackLine'
@@ -18,7 +20,7 @@ export default function AboutPage() {
                     <BlackLine />
                     <div className="main">
                         <div className="div" style={{ textAlign: 'center', fontSize: '30px', marginTop: '20px' }}>
-                            About Info Page
+                            About Info Page 
                         </div>
                     </div>
                 </div>

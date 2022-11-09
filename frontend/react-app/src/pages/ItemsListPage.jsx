@@ -37,6 +37,7 @@ export default function ItemsListPage() {
         return sortedItems.filter(item => item.title.toLowerCase().includes(searchQuery.toLowerCase()))
     }, [searchQuery, sortedItems])
 
+
     return (
         <div className="main-content" >
             {isLoading

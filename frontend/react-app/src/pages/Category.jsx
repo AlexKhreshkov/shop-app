@@ -3,7 +3,7 @@ import { useData } from '../hooks/useAuth'
 import { getCategoryItemCount } from '../utils/utls'
 
 
-export default function Category({ name, categoryId }) {
+export default function Category({ name, categoryId, selectedCategories, changeSelectedCategories }) {
     const { items } = useData()
 
     return (
@@ -11,7 +11,10 @@ export default function Category({ name, categoryId }) {
             <input
                 type="checkbox"
                 value={name}
-            // onChange={(e) => changeSelectedCategories(e.target.value, e.target.checked)}
+                // onChange={(e) => changeSelectedCategories(e.target.value, e.target.checked)}
+                onChange={(e) => changeSelectedCategories({
+                    
+                })}
             >
             </input>
             <li> {name}({getCategoryItemCount(items, categoryId)})</li>
