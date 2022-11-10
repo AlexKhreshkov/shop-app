@@ -4,33 +4,11 @@ import { useState } from 'react'
 import Category from '../pages/Category'
 import MyButton from './UI/buttons/MyButton'
 
-export default function ItemListCategories({ categories }) {
-
-
-
-    const [categoriesForm, setCategoriesForm] = useState({
-        min: '',
-        max: '',
-    })
-    const [selectedCategories, changeSelectedCategories] = useState()
-
-    useEffect(() => {
-        const obj = {}
-        for (let category of categories) {
-            obj[category.name] = false
-        }
-        changeSelectedCategories(obj)
-    }, [])
-
-
-    function searchWithCategories(e) {
-        e.preventDefault()
-        // console.log(categoriesForm);
-    }
+export default function ItemListCategories({ categories, selectedCategories, changeSelectedCategories, priceForm, setPriceForm }) {
 
     return (
         <div className="items__categories">
-            <form onSubmit={(e) => searchWithCategories(e)}>
+            <form>
                 <div className="items__categories-title">CATEGORIES</div>
                 <div className="items__categories-list">
                     <ul>
@@ -53,18 +31,19 @@ export default function ItemListCategories({ categories }) {
                         <div className='items__categories-input'>
                             Min: <input
                                 type="text"
-                                onChange={(e => setCategoriesForm({ ...categoriesForm, min: e.target.value }))}
+                                value={priceForm.min}
+                                onChange={(e => setPriceForm({ ...priceForm, min: e.target.value }))}
                             />
                         </div>
                         <div className='items__categories-input'>
                             Max: <input
                                 type="text"
-                                onChange={(e => setCategoriesForm({ ...categoriesForm, max: e.target.value }))}
+                                value={priceForm.max}
+                                onChange={(e => setPriceForm({ ...priceForm, max: e.target.value }))}
                             />
                         </div>
                     </div>
                 </div>
-                <MyButton>Search</MyButton>
             </form>
         </div>
     )

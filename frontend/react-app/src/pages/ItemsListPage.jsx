@@ -14,6 +14,12 @@ export default function ItemsListPage() {
     const { items, isLoading, categories } = useData()
     const [selectedSort, setSelectedSort] = useState('')
     const [searchQuery, setSearchQuery] = useState('')
+    const [selectedCategories, changeSelectedCategories] = useState(true)
+
+    const [priceForm, setPriceForm] = useState({
+        min: 1,
+        max: 99999,
+    })
 
     const sortedItems = useMemo(() => {
         if (selectedSort) {
@@ -29,7 +35,7 @@ export default function ItemsListPage() {
             if (selectedSort === 'likes') {
                 return [...items].sort((a, b) => b.likes.length - a.likes.length)
             }
-        }   
+        }
         return items
     }, [selectedSort, items])
 
@@ -37,6 +43,24 @@ export default function ItemsListPage() {
         return sortedItems.filter(item => item.title.toLowerCase().includes(searchQuery.toLowerCase()))
     }, [searchQuery, sortedItems])
 
+    const filteredByPriceAndsearchedAndSortedItems = useMemo(() => {
+        return searchedAndSortedItems.filter((item) => item.price <= +priceForm.max && item.price >= +priceForm.min)
+    }, [priceForm, searchedAndSortedItems])
+
+    // const filterByCategories = useMemo(() => {
+    //     return filteredByPriceAndsearchedAndSortedItems.filter(item => selectedCategories[item.category])
+    // }, [selectedCategories, filteredByPriceAndsearchedAndSortedItems])
+
+    
+    
+
+    useEffect(() => {
+        let obj = {}
+        for (let category of categories) {
+            obj[category.name] = false
+        }
+        changeSelectedCategories(obj)
+    }, [categories])
 
     return (
         <div className="main-content" >
@@ -52,10 +76,14 @@ export default function ItemsListPage() {
                             <div className="items__wrapp">
                                 <ItemListCategories
                                     categories={categories}
+                                    selectedCategories={selectedCategories}
+                                    changeSelectedCategories={changeSelectedCategories}
+                                    priceForm={priceForm}
+                                    setPriceForm={setPriceForm}
                                 />
                                 <div className="items__content">
                                     <div className="items__header">
-                                        <div className="items__header-showing-results">Showing {searchedAndSortedItems.length} results of {items.length}</div>
+                                        <div className="items__header-showing-results">Showing {filteredByPriceAndsearchedAndSortedItems.length} results of {items.length}</div>
                                         <ItemsSort
                                             onChange={e => setSelectedSort(e.target.value)}
                                         />
@@ -69,7 +97,7 @@ export default function ItemsListPage() {
                                         />
                                     </div>
                                     {
-                                        searchedAndSortedItems.map((item) =>
+                                        filteredByPriceAndsearchedAndSortedItems.map((item) =>
                                             <ItemListItem
                                                 key={item.id}
                                                 id={item.id}
@@ -84,7 +112,7 @@ export default function ItemsListPage() {
                                             />
                                         )
                                     }
-                                    {searchedAndSortedItems.length > 1
+                                    {filteredByPriceAndsearchedAndSortedItems.length > 1
                                         ?
                                         <></>
                                         :

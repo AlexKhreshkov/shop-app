@@ -13,7 +13,6 @@ import LogoutPage from './pages/LogoutPage';
 import SignupPage from './pages/SignupPage';
 import { DataProvider } from './hoc/DataProvider';
 import OrderPage from './pages/OrderPage'
-import { RequireNoAuth } from './hoc/RequireNoAuth';
 
 function App() {
     return (

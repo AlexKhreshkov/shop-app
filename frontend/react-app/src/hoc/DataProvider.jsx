@@ -32,7 +32,6 @@ export const DataProvider = ({ children }) => {
         const fetchedUsersProfiles = await getUsersProfilesPic()
         setUsersProfilesPic(fetchedUsersProfiles)
         defineUser(fetchedItems)
-
     })
 
     const defineUser = async () => {
