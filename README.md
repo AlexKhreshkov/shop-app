@@ -65,5 +65,8 @@ For storing data were chosen PostgreSQL.
 Database Diagram: 
 
 ![image](https://user-images.githubusercontent.com/102662863/200765822-8c6ae9b1-cdc1-496c-b3b9-6d5a84bed7d4.png)
+<h1>Installation</h1>
+<h3>Backend:</h3>
+<h3>Fronted:</h3>
 
 
