@@ -1,8 +1,5 @@
 import React from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
 import Category from '../pages/Category'
-import MyButton from './UI/buttons/MyButton'
 
 export default function ItemListCategories({ categories, selectedCategories, changeSelectedCategories, priceForm, setPriceForm }) {
 
