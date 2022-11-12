@@ -3,7 +3,21 @@
 Ecommerce online shop is an app allows automatize products purchase via the Internet. It allows to show shop's products, product's search, product's detail view, 
 make an order from cart, registration, make profile, leave comments/like products to the products.
 
-<h1>Architecture</h1>
+<div>
+    <ol>
+        <li>Architecture
+            <ol type="1">
+                <li>Built with</li>
+                <li>Frontend</li>
+                <li>Backend</li>
+                <li>Database Schema</li>
+            </ol>
+        </li>
+        <li>How to install</li>
+    </ol>
+</div>
+
+<h1>1. Architecture</h1>
 <h3>Built with:</h3>
 <ol>
   <li>HTML</li>
@@ -58,15 +72,39 @@ API Endpoints:
     <li>'api/orders-statuses/'</li>
     <li>'api/auth/'</li>
 </ol>
-
 <h3>Database Schema </h3>
 For storing data were chosen PostgreSQL.
 
 Database Diagram: 
 
 ![image](https://user-images.githubusercontent.com/102662863/200765822-8c6ae9b1-cdc1-496c-b3b9-6d5a84bed7d4.png)
-<h1>Installation</h1>
-<h3>Backend:</h3>
-<h3>Fronted:</h3>
+
+<h1>2. How to install</h1>
+
+<h3>2.1 Installation backend (python+venv+django+posgresql):</h3>
+<h4>On unix-like system(ubuntu 22.04)</h4>
+<div>
+   <ul>
+       <li>sudo apt install python3-pip</li>
+       <li>sudo apt install python3.10-venv</li>
+       <li>sudo apt install postgresql</li>
+   </ul>
+<h5>Create/activate venv</h5>
+   <ul>
+       <li>cd shop-app/backend/</li>
+       <li>sudo python3 -m venv venv</li>
+       <li>source venv/bin/activate</li>
+       <li>pip install -r requirments.txt</li>
+   </ul>
+<h5>Create database</h5>
+   <ul>
+       <li>sudo su - postgres</li>
+       <li>psql</li>
+       <li>CREATE DATABASE shop_db;</li>
+   </ul>
+</div>
+
+<h3>2.2 Installation frontend:</h3>
+
 
 
