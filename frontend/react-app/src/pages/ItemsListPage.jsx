@@ -51,8 +51,6 @@ export default function ItemsListPage() {
     //     return filteredByPriceAndsearchedAndSortedItems.filter(item => selectedCategories[item.category])
     // }, [selectedCategories, filteredByPriceAndsearchedAndSortedItems])
 
-    
-    
 
     useEffect(() => {
         let obj = {}
