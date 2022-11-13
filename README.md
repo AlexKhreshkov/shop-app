@@ -5,7 +5,7 @@ make an order from cart, registration, make profile, leave comments/like product
 
 <div>
     <ol>
-        <li>Architecture
+        <li>Architecture <a href="#architecture">a</a>
             <ol type="1">
                 <li>Built with</li>
                 <li>Frontend</li>
@@ -122,6 +122,15 @@ Result:
 
 
 <h3>2.2 Installation frontend:</h3>
+   <ul>
+       <li>sudo apt install npm</li>
+       <li>npm install</li>
+       <li>sudo apt-get install curl</li>
+       <li>sudo npm install -g create-react-app</li>
+   </ul>
+   
+Result:    
 
+![image](https://user-images.githubusercontent.com/102662863/201509627-6e81e991-c892-42ff-ab08-916deede3327.png)
 
 
