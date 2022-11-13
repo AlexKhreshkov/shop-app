@@ -13,7 +13,12 @@ make an order from cart, registration, make profile, leave comments/like product
                 <li>Database Schema</li>
             </ol>
         </li>
-        <li>How to install</li>
+        <li>Install
+                    <ol type="1">
+                <li>Frontend</li>
+                <li>Backend</li>
+            </ol>
+        </li>
     </ol>
 </div>
 
@@ -47,9 +52,9 @@ Routes:
 
 <h3>Backend:</h3>
 
-Built with additon of Django Framework - Django Rest Framework. 
+Built with additon of Django Framework - <a href='https://www.django-rest-framework.org/'>DjangoRestFramework</a>. 
 
-Library for auth - Djoser(token authoriztion).
+Library for auth - <a href="https://djoser.readthedocs.io/en/latest/getting_started.html">Djoser</a>(token authoriztion).
 
 API Endpoints: 
 <ol>
@@ -81,28 +86,40 @@ Database Diagram:
 
 <h1>2. How to install</h1>
 
-<h3>2.1 Installation backend (python+venv+django+posgresql):</h3>
+<h3>2.1 Installation backend (python+venv+django+postgresql):</h3>
 <h4>On unix-like system(ubuntu 22.04)</h4>
 <div>
    <ul>
        <li>sudo apt install python3-pip</li>
        <li>sudo apt install python3.10-venv</li>
        <li>sudo apt install postgresql</li>
+       <li>pip install psycopg2-binary</li>
    </ul>
+   
+<h5>Create database</h5>
+   <ul>
+       <li>sudo su - postgres</li>
+       <li>psql</li>
+       <li>CREATE DATABASE shop_db;</li>
+       <li>alter role postgres with password 'admin';</li>
+       <li>(cd shop-app) psql shop_db < data.sql;</li>
+    
+   </ul>
+</div>   
+
 <h5>Create/activate venv</h5>
    <ul>
        <li>cd shop-app/backend/</li>
        <li>sudo python3 -m venv venv</li>
        <li>source venv/bin/activate</li>
        <li>pip install -r requirments.txt</li>
+       <li>(cd backend/shop_api/app) python manage.py runserver</li>
    </ul>
-<h5>Create database</h5>
-   <ul>
-       <li>sudo su - postgres</li>
-       <li>psql</li>
-       <li>CREATE DATABASE shop_db;</li>
-   </ul>
-</div>
+Result: 
+
+
+![image](https://user-images.githubusercontent.com/102662863/201504029-e8a538a9-20b6-44be-aa17-74f1c2ef8c09.png)
+
 
 <h3>2.2 Installation frontend:</h3>
 
