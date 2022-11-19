@@ -3,12 +3,9 @@ import Header from "./Header";
 import Footer from './Footer'
 
 export default function ErrorPage() {
-    const error = useRouteError();
-    console.error(error);
 
     return (
         <div className="main-content">
-            <Header />
             <div className="main">
                 <div className="error">
                     <div className="error">

@@ -7,7 +7,7 @@ import { getCategoryItemCount } from '../utils/utls'
 
 export default function Category({ name, categoryId, selectedCategories, changeSelectedCategories }) {
     const { items } = useData()
-    const [checkboxValue, setCheckboxValue] = useState(false)
+    const [checkboxValue, setCheckboxValue] = useState(true)
 
     useEffect(() => {
         setCheckboxValue(selectedCategories[name])
