@@ -3,7 +3,7 @@ import { useState } from 'react'
 import OrderForm from '../components/UI/forms/OrderForm'
 import { Loader } from '../components/UI/loader/Loader'
 import Success from '../components/UI/modal/Success'
-import { useData } from '../hooks/useAuth'
+import { useData } from '../hooks/useData'
 import BlackLine from './BlackLine'
 import Navigation from './Navigation'
 

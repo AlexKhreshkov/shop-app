@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Loader } from '../components/UI/loader/Loader'
-import { useData } from '../hooks/useAuth'
+import { useData } from '../hooks/useData'
 import BlackLine from './BlackLine'
 import Navigation from './Navigation'
 
@@ -46,16 +46,6 @@ export default function LoginPage() {
                             Login
                             <br />
                         </div>
-                        {/* {fromPage !== '/' ?
-                            <div style={{ textAlign: 'center', fontSize: '20px', marginTop: '40px' }}>
-                                <div style={{ textDecoration: 'underline', marginBottom: '10px' }}>
-                                    First, Login/<Link to='/signup'>SignUp</Link>
-                                </div>
-                                to access {fromPage}
-                            </div>
-                            :
-                            <div></div>
-                        } */}
                         <div className="auth-form">
                             <form onSubmit={sumbitAuthForm}>
                                 <label htmlFor="username">Username:</label>

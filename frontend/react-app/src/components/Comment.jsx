@@ -1,7 +1,6 @@
 import React from 'react'
-import { useEffect } from 'react'
-import { base_url, getComments } from '../API/getData'
-import { useData } from '../hooks/useAuth'
+import { base_url } from '../API/getData'
+import { useData } from '../hooks/useData'
 
 export default function Comment({ commentId, userId, user_name, name, text, created, itemComments, setItemCommets }) {
 

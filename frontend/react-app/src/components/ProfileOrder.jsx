@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { base_url } from '../API/getData'
-import { useData } from '../hooks/useAuth'
+import { useData } from '../hooks/useData'
 import ProfileOrderItems from './ProfileOrderItems'
 
 export default function ProfileOrder({ id, price, status }) {

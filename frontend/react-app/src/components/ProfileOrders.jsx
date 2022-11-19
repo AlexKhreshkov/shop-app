@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { useEffect } from 'react'
-import { useData } from '../hooks/useAuth'
+import { useData } from '../hooks/useData'
 import { getOrderStatusName } from '../utils/utls'
 import ProfileOrder from './ProfileOrder'
 

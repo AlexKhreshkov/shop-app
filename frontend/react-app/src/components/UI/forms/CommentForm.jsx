@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { base_url } from '../../../API/getData'
-import { useData } from '../../../hooks/useAuth'
+import { useData } from '../../../hooks/useData'
 import Success from '../modal/Success'
 
 export default function CommentForm({ item, itemComments, setItemCommets }) {
@@ -35,14 +35,14 @@ export default function CommentForm({ item, itemComments, setItemCommets }) {
 
     return (
         <div className="comments__add-comment">
-            {/* {isSuccessModal
+            {isSuccessModal
                 ?
                 <Success
                     onClick={e => setIsSuccessModal(false)}
                 />
                 :
                 <></>
-            } */}
+            }
             <a href=''></a>
             <div className="comments__add-comment-wrapp">
                 <form onSubmit={e => addComment(e)}>

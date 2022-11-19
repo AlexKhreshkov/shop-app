@@ -6,7 +6,7 @@ import ItemListItem from '../components/ItemListItem'
 import { Loader } from '../components/UI/loader/Loader'
 import BigSearch from '../components/UI/search/BigSearch'
 import ItemsSort from '../components/UI/select/ItemsSort'
-import { useData } from '../hooks/useAuth'
+import { useData } from '../hooks/useData'
 import Navigation from './Navigation'
 
 export default function ItemsListPage() {

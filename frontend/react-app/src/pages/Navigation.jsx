@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import NavSearch from '../components/UI/search/NavSearch'
-import { useAuth, useData } from '../hooks/useAuth'
+import { useAuth, useData } from '../hooks/useData'
 
 export default function Navigation() {
 

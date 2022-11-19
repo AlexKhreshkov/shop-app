@@ -1,6 +1,6 @@
 import React from 'react'
 import { base_url } from '../API/getData'
-import { useData } from '../hooks/useAuth'
+import { useData } from '../hooks/useData'
 import ProfilleInfoInput from './UI/input/ProfilleInfoInput'
 
 export default function ProfileInfoForm({ fields, userInfoForm, setUserInfoForm, setIsSuccessModal, profileNewPic }) {

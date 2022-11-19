@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { useData } from '../hooks/useAuth'
+import { useData } from '../hooks/useData'
 import { searchItemBySlug } from '../utils/utls'
 import AddToCartBtn from '../components/UI/buttons/AddToCartBtn'
 import LikeBtn from '../components/UI/buttons/LikeBtn'

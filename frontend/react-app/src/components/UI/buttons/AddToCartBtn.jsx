@@ -1,5 +1,5 @@
 import React from 'react'
-import { useData } from '../../../hooks/useAuth'
+import { useData } from '../../../hooks/useData'
 
 export default function AddToCartBtn({ slug }) {
 

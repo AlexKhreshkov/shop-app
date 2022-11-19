@@ -48,11 +48,6 @@ export const DataProvider = ({ children }) => {
             if (!userCart) {
                 userCart = await createUserCart(token, userData)
             }
-            // {
-            //     "id": 3,
-            //     "user": 16,
-            //     "total_cost": 123.0
-            // }
             setUserCart(userCart)
             const fetchedItems = await getItems()
             const userCartItemQuantity = await getUserCartItemQuantity(authToken, userCart, fetchedItems)
@@ -149,13 +144,6 @@ export const DataProvider = ({ children }) => {
                 addItemToUserCart(authToken, userCart, item)
             }
         }
-        // if (!cartItems.includes(item.id)) {
-        //     setCartItems([...cartItems, item])
-        //     // if (authToken) {
-        //     //     addItemToCart(authToken, userCart, item)
-        //     // }
-        //     setCartItemsQuantity(new Map(cartItemsQuantity.set(item, 1)))
-        // } 
     }
 
     const removeFromCart = (itemSlug) => {
@@ -170,8 +158,6 @@ export const DataProvider = ({ children }) => {
             deleteUserItemFromCart(authToken, item, userCart)
         }
         setCartItems(cartItems.filter((element) => element !== item))
-
-        // setCartItemsQuantity(new Map(cartItemsQuantity.delete(item)))
     }
 
     const getCartTotal = (cartItemsQuantity) => {

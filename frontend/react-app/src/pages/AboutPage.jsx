@@ -1,8 +1,6 @@
 import React from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
 import { Loader } from '../components/UI/loader/Loader'
-import { useData } from '../hooks/useAuth'
+import { useData } from '../hooks/useData'
 import BlackLine from './BlackLine'
 import Navigation from './Navigation'
 

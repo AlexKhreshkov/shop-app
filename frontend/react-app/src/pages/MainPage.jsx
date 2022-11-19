@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import BestSellers from '../components/BestSellers'
 import Services from '../components/Services'
 import { Loader } from '../components/UI/loader/Loader'
-import { useData } from '../hooks/useAuth'
+import { useData } from '../hooks/useData'
 import { setLast3Items } from '../utils/utls'
 import Navigation from './Navigation'
 

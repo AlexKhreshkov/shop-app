@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { useData } from '../../../hooks/useAuth'
+import { useData } from '../../../hooks/useData'
 import MakeOrderBtn from '../buttons/MakeOrderBtn'
 import CartItem from './CartItem'
 

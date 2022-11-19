@@ -116,12 +116,6 @@ export async function getUserCartItem(authToken, userCart, items) {
 
 
 export async function getUserCartItemQuantity(authToken, userCart, items) {
-    // const CartItemsResponse = await fetch(`${base_url}/carts-items/`, {
-    //     method: 'GET',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    // })
     const CartItems = await getUserCartItem()
     let cartItemsQuantity = new Map()
     for (let CartItem of CartItems) {
