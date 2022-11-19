@@ -188,6 +188,7 @@ a {
   padding: 10px;
 }
 
+
 .nav__item input {
   display: inline-block;
   border: 2px solid #ccc;
@@ -375,9 +376,9 @@ a {
   color: white;
 }
 
-/* .active {
+.active {
   border-bottom: 1px solid black;
-} */
+}
 
 .item {
   max-width: 1080px;
