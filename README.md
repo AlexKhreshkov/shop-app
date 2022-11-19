@@ -5,16 +5,16 @@ make an order from cart, registration, make profile, leave comments/like product
 
 <div>
     <ol>
-        <li>Architecture
+        <li><a href="#architecture">Architecture</a>
             <ol type="1">
-                <li>Built with</li>
-                <li>Frontend</li>
-                <li>Backend</li>
-                <li>Database Schema</li>
+                <li><a href="#builtWith">Built with</a></li>
+                <li><a href="#frontend">Frontend</a></li>
+                <li><a href="#backend">Backend</a></li>
+                <li><a href="#database">Database Schema</a></li>
             </ol>
         </li>
-        <li>Install
-                    <ol type="1">
+        <li><a href="#install">How to install</a>
+            <ol type="1">
                 <li>Frontend</li>
                 <li>Backend</li>
             </ol>
@@ -22,8 +22,8 @@ make an order from cart, registration, make profile, leave comments/like product
     </ol>
 </div>
 
-<h1>1. Architecture</h1>
-<h3>Built with:</h3>
+<h1 id="architecture">1. Architecture </h1>
+<h3 id="builtWith">Built with:</h3>
 <ol>
   <li>HTML</li>
   <li>CSS/SCSS</li>
@@ -33,7 +33,7 @@ make an order from cart, registration, make profile, leave comments/like product
   <a href='https://www.postgresql.org/'>PostgreSQL</a>
   </li>
 </ol>
-<h3>Frontend:</h3>
+<h3 id="frontend">Frontend:</h3>
 Bulit with React v.18.2.0 and ReactRouter v.6
 
 src - frontend main app folder
@@ -50,7 +50,7 @@ Routes:
   <li> /order - order page</li>
 </ol>
 
-<h3>Backend:</h3>
+<h3 id="backend">Backend:</h3>
 
 Built with additon of Django Framework - <a href='https://www.django-rest-framework.org/'>DjangoRestFramework</a>. 
 
@@ -77,14 +77,14 @@ API Endpoints:
     <li>'api/orders-statuses/'</li>
     <li>'api/auth/'</li>
 </ol>
-<h3>Database Schema </h3>
+<h3 id="database">Database Schema </h3>
 For storing data were chosen PostgreSQL.
 
 Database Diagram: 
 
 ![image](https://user-images.githubusercontent.com/102662863/200765822-8c6ae9b1-cdc1-496c-b3b9-6d5a84bed7d4.png)
 
-<h1>2. How to install</h1>
+<h1 id="install">2. How to install</h1>
 
 <h3>2.1 Installation backend (python+venv+django+postgresql):</h3>
 <h4>On unix-like system(ubuntu 22.04)</h4>
@@ -122,6 +122,15 @@ Result:
 
 
 <h3>2.2 Installation frontend:</h3>
+   <ul>
+       <li>sudo apt install npm</li>
+       <li>npm install</li>
+       <li>sudo apt-get install curl</li>
+       <li>sudo npm install -g create-react-app</li>
+   </ul>
+   
+Result:    
 
+![image](https://user-images.githubusercontent.com/102662863/201509627-6e81e991-c892-42ff-ab08-916deede3327.png)
 
 
