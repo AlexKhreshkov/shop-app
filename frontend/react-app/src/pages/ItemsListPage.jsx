@@ -47,15 +47,14 @@ export default function ItemsListPage() {
         return searchedAndSortedItems.filter((item) => item.price <= +priceForm.max && item.price >= +priceForm.min)
     }, [priceForm, searchedAndSortedItems])
 
-    // const filterByCategories = useMemo(() => {
-    //     return filteredByPriceAndsearchedAndSortedItems.filter(item => selectedCategories[item.category])
-    // }, [selectedCategories, filteredByPriceAndsearchedAndSortedItems])
-
+    const filterByCategories = useMemo(() => {
+        return filteredByPriceAndsearchedAndSortedItems.filter(item => selectedCategories[item.category_name])
+    }, [selectedCategories, filteredByPriceAndsearchedAndSortedItems])
 
     useEffect(() => {
         let obj = {}
         for (let category of categories) {
-            obj[category.name] = false
+            obj[category.name] = true
         }
         changeSelectedCategories(obj)
     }, [categories])
@@ -81,7 +80,7 @@ export default function ItemsListPage() {
                                 />
                                 <div className="items__content">
                                     <div className="items__header">
-                                        <div className="items__header-showing-results">Showing {filteredByPriceAndsearchedAndSortedItems.length} results of {items.length}</div>
+                                        <div className="items__header-showing-results">Showing {filterByCategories.length} results of {items.length}</div>
                                         <ItemsSort
                                             onChange={e => setSelectedSort(e.target.value)}
                                         />
@@ -95,7 +94,7 @@ export default function ItemsListPage() {
                                         />
                                     </div>
                                     {
-                                        filteredByPriceAndsearchedAndSortedItems.map((item) =>
+                                        filterByCategories.map((item) =>
                                             <ItemListItem
                                                 key={item.id}
                                                 id={item.id}
@@ -110,7 +109,7 @@ export default function ItemsListPage() {
                                             />
                                         )
                                     }
-                                    {filteredByPriceAndsearchedAndSortedItems.length > 1
+                                    {filterByCategories.length > 1
                                         ?
                                         <></>
                                         :

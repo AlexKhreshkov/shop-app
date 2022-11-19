@@ -9,25 +9,13 @@ export default function Category({ name, categoryId, selectedCategories, changeS
     const { items } = useData()
     const [checkboxValue, setCheckboxValue] = useState(false)
 
-    // headphones
-    // :
-    // false
-    // laptops
-    // :
-    // false
-    // phones
-    // :
-    // false
-
     useEffect(() => {
         setCheckboxValue(selectedCategories[name])
     }, [])
 
     function onChangeBoxValue(e) {
-        let isChecked = e.target.checked
-        setCheckboxValue(isChecked)
-        changeSelectedCategories({ ...selectedCategories, [name]: !isChecked })
-        console.log(selectedCategories);
+        setCheckboxValue(e.target.checked)
+        changeSelectedCategories({ ...selectedCategories, [name]: !checkboxValue })
     }
 
     return (
