@@ -19,6 +19,9 @@ make an order from cart, registration, make profile, leave comments/like product
                 <li>Backend</li>
             </ol>
         </li>
+        <li>
+            <a href="#result">Result</a>
+        </li>
     </ol>
 </div>
 
@@ -129,7 +132,7 @@ Result:
        <li>sudo npm install -g create-react-app</li>
    </ul>
    
-Result:    
+<h3 id="result">3. Result:</h3>   
 
 ![image](https://user-images.githubusercontent.com/102662863/201509627-6e81e991-c892-42ff-ab08-916deede3327.png)
 
