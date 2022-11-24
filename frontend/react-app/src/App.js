@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout';
 import AboutPage from './pages/AboutPage';
 import ErrorPage from './pages/ErrorPage';
@@ -45,8 +45,8 @@ function App() {
                                 <OrderPage />
                             </RequireCartAndAuth>
                         } />
-                        <Route path='*' element={<ErrorPage />} />
                     </Route>
+                    <Route path='*' element={<ErrorPage />} />
                 </Routes>
             </DataProvider>
         </div >
