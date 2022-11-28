@@ -43,6 +43,7 @@ export default function ProfilePersonalInfo() {
                 setUserInfoForm={setUserInfoForm}
                 setIsSuccessModal={setIsSuccessModal}
                 profileNewPic={profileNewPic}
+                isSuccessModal={isSuccessModal}
             />
         </div>
     )

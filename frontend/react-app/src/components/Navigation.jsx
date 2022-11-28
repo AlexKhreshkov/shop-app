@@ -74,7 +74,14 @@ export default function Navigation() {
                 <Link to='/'><li>Main</li></Link>
                 <Link to='/items'><li>Products</li></Link>
                 <Link to='/about'><li>About</li></Link>
-                {cartItems ? <li onClick={() => setCartStatus(true)}>Cart</li> : <></>}
+                {cartItems
+                    ?
+                    <li onClick={() => setCartStatus(true)}>
+                        Cart
+                    </li>
+                    :
+                    <></>
+                }
                 {authToken
                     ?
                     <Link to='/profile'><li>Profile</li></Link>

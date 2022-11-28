@@ -94,6 +94,10 @@ a {
   .nav {
     display: none !important;
   }
+
+  .items__categories-title {
+    font-size: 14px !important;
+  }
 }
 
 @media (min-width: 1041px) {
@@ -569,7 +573,7 @@ a {
 }
 
 .item__like-btn-active button {
-  border: 1px solid #eeeeee;
+  border: 1px solid #eeeeee;  
   background-color: red;
   height: 65px;
   padding: 0px 20px;
@@ -979,7 +983,6 @@ a {
   background-color: rgba(0, 0, 0, 0.3);
   top: 0;
   left: 0;
-  /* visibility: hidden; */
 }
 
 .cart.open {
@@ -1000,7 +1003,7 @@ a {
   color: black;
   padding: 30px;
   position: relative;
-  min-width: 1000px;
+  width: 80%;
 }
 
 .cart__title {
@@ -1020,6 +1023,7 @@ a {
   display: flex;
   align-items: center;
   border-bottom: 1px solid black;
+  justify-content: space-between;
 }
 
 .cart__item-img {
@@ -1046,6 +1050,7 @@ a {
 
 .cart__item-content {
   display: flex;
+  justify-content: space-between;
 }
 
 .cart__item-column {
@@ -1089,15 +1094,19 @@ a {
 
 .profile__container {
   display: flex;
-  border: 1px solid black;
-  width: 90%;
+  border-radius: 16px;
+  width: 95%;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .profile__personal-info {
+  margin-right: 20px;
   display: flex;
   flex-direction: column;
-  flex: 0 0 30%;
-  border-right: 1px solid black;
+  flex: 0 1 30%;
+  border-radius: 24px;
+  border: 1px dashed black;
 }
 
 .profile__row {
@@ -1120,23 +1129,21 @@ a {
   font-size: 20px;
 }
 
-.profile__row {
-  display: flex;
-}
 
-.profile__info-form div {
+.profile__info-form div,
+button {
+  display: flex;
+  flex-direction: column;
   margin: 10px;
   margin-left: 20px;
 }
 
 .profile__info-form input {
-  margin-left: 10px;
   padding: 5px 10px;
   border: 1px solid black;
 }
 
 .profile__info-form button {
-  margin-left: 80px;
   margin-bottom: 20px;
   padding: 5px 20px;
   background: #3cb878;

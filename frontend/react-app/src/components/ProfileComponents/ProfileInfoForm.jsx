@@ -2,8 +2,9 @@ import React from 'react'
 import { base_url } from '../../API/getData'
 import { useData } from '../../hooks/useData'
 import ProfilleInfoInput from '../UI/input/ProfilleInfoInput'
+import Success from '../UI/modal/Success'
 
-export default function ProfileInfoForm({ fields, userInfoForm, setUserInfoForm, setIsSuccessModal, profileNewPic }) {
+export default function ProfileInfoForm({ fields, userInfoForm, setUserInfoForm, setIsSuccessModal, isSuccessModal, profileNewPic }) {
     const { authToken, user, setUser } = useData()
 
     function updateUserInfo(e) {
@@ -36,6 +37,7 @@ export default function ProfileInfoForm({ fields, userInfoForm, setUserInfoForm,
             >
                 Update
             </button>
+            {isSuccessModal ? <Success/> : <></>}
         </form>
     )
 }
