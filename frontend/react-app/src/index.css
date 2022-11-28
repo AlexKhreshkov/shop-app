@@ -90,6 +90,70 @@ a {
   text-decoration: none
 }
 
+@media (max-width: 1041px) {
+  .nav {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1041px) {
+  .lowNav {
+    display: none !important;
+  }
+
+  .lowNavList {
+    display: none !important;
+  }
+}
+
+.lowNav {
+  display: none;
+  width: 100%;
+  margin: 10px 30px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.lowNav__title {
+  font-size: 32px;
+  margin-right: 20px;
+  text-transform: uppercase;
+  color: #3cb878;
+  align-self: center;
+}
+
+.burgerMenu {
+  background: url(../public/img/burger-bar.png) 0 0 no-repeat;
+  width: 20%;
+}
+
+
+.lowNavList {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.lowNavList li {
+  width: 100%;
+  padding: 10px 0;
+  background-color: #3cb878;
+  margin: 5px 0;
+  font-size: 20px;
+  border-radius: 16px;
+}
+
+.lowNavList li:last-child {
+  margin-bottom: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+
 .App {
   display: flex;
   flex-direction: column;
@@ -113,7 +177,6 @@ a {
 
 .header {
   display: flex;
-  max-width: 1920px;
   height: 60px;
   color: white;
   font-family: "Font Awesome";
@@ -158,7 +221,6 @@ a {
   height: 100px;
   font-family: "Poppins", sans-serif;
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   padding: 0 40px;
   background-color: white;
@@ -166,11 +228,10 @@ a {
 }
 
 .nav__title {
-  min-width: 300px;
   font-size: 32px;
+  margin-right: 20px;
   text-transform: uppercase;
   color: #3cb878;
-  margin-right: 30px;
 }
 
 .nav__menu {
@@ -284,6 +345,14 @@ a {
   margin-right: 30px;
 }
 
+@media (max-width: 1485px) {
+  .best-sellers__description {
+    max-width: 70%;
+  }
+}
+
+@media (max-width: 1053px) {}
+
 .best-sellers__title {
   font-size: 30px;
   margin-bottom: 5px;
@@ -319,7 +388,6 @@ a {
 }
 
 .best-sellers__img img {
-  /* width: 332px; */
   width: 100%;
   height: 100%;
   object-fit: cover;
