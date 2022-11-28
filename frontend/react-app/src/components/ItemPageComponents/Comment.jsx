@@ -1,10 +1,11 @@
 import React from 'react'
-import { base_url } from '../API/getData'
-import { useData } from '../hooks/useData'
+import { base_url } from '../../API/getData'
+import { useData } from '../../hooks/useData'
+
 
 export default function Comment({ commentId, userId, user_name, name, text, created, itemComments, setItemCommets }) {
 
-    const { usersProfilesPic, user, authToken, setComments } = useData()
+    const { usersProfilesPic, user, authToken } = useData()
 
     function getImage() {
         let image

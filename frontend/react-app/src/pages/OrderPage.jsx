@@ -4,8 +4,9 @@ import OrderForm from '../components/UI/forms/OrderForm'
 import { Loader } from '../components/UI/loader/Loader'
 import Success from '../components/UI/modal/Success'
 import { useData } from '../hooks/useData'
-import BlackLine from './BlackLine'
-import Navigation from './Navigation'
+import BlackLine from '../components/UI/lines/BlackLine'
+import Navigation from './../components/Navigation'
+
 
 
 export default function OrderPage() {

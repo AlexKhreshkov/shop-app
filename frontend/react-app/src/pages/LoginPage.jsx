@@ -1,11 +1,12 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { Loader } from '../components/UI/loader/Loader'
 import { useData } from '../hooks/useData'
-import BlackLine from './BlackLine'
-import Navigation from './Navigation'
+import BlackLine from '../components/UI/lines/BlackLine'
+import Navigation from './../components/Navigation'
+
 
 export default function LoginPage() {
     const navigate = useNavigate()
@@ -32,11 +33,10 @@ export default function LoginPage() {
 
 
     return (
-        <div className="main-content">
-
+        <main className="main-content">
             {isLoading
                 ?
-                <div style={{ display: "flex", justifyContent: 'center', marginTop: '100px' }}><Loader /></div>
+                <div className='loader'><Loader /></div>
                 :
                 <>
                     <Navigation />
@@ -76,6 +76,6 @@ export default function LoginPage() {
                     </div>
                 </>
             }
-        </div>
+        </main>
     )
 }

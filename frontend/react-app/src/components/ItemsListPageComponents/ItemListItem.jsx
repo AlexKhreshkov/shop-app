@@ -1,9 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import AddToCartBtn from './UI/buttons/AddToCartBtn'
-import LikeBtn from './UI/buttons/LikeBtn'
+import AddToCartBtn from '../UI/buttons/AddToCartBtn'
 
-export default function ItemListItem({ id, title, slug, body, price, category_name, image, availableCount, likes }) {
+export default function ItemListItem({ id, title, slug, body, price, category_name, image, likes }) {
     return (
         <div className="items__item">
             <div className="items__item-img">

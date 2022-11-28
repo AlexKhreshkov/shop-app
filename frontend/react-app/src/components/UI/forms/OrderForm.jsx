@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { base_url, deleteUserItemFromCart, getAllOrders } from '../../../API/getData'
 import { useData } from '../../../hooks/useData'
-import BlackLine from '../../../pages/BlackLine'
+import BlackLine from '../lines/BlackLine'
 import MyButton from '../buttons/MyButton'
 import CartItem from '../modal/CartItem'
 

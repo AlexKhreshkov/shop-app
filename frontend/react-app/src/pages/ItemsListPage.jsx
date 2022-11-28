@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
-import { useMemo } from 'react'
-import { useEffect } from 'react'
-import ItemListCategories from '../components/ItemListCategories'
-import ItemListItem from '../components/ItemListItem'
+import React, { useState, useMemo, useEffect } from 'react'
+import ItemListCategories from '../components/ItemsListPageComponents/ItemListCategories'
+import ItemListItem from '../components/ItemsListPageComponents/ItemListItem'
+import Items from '../components/ItemsListPageComponents/Items'
+import WhiteLine100 from '../components/UI/lines/WhiteLine100'
 import { Loader } from '../components/UI/loader/Loader'
 import BigSearch from '../components/UI/search/BigSearch'
 import ItemsSort from '../components/UI/select/ItemsSort'
 import { useData } from '../hooks/useData'
-import Navigation from './Navigation'
+import Navigation from './../components/Navigation'
+import BlackLine from '../components/UI/lines/BlackLine'
+
 
 export default function ItemsListPage() {
 
@@ -60,71 +62,67 @@ export default function ItemsListPage() {
     }, [categories])
 
     return (
-        <div className="main-content" >
+        <main className="main-content" >
             {isLoading
                 ?
-                <div style={{ display: "flex", justifyContent: 'center', marginTop: '100px' }}><Loader /></div>
+                <div className='loader'><Loader /></div>
                 :
                 <>
                     <Navigation />
                     <div className="main">
-                        <div className="after-nav hr-black-line"></div>
-                        <div className="items">
-                            <div className="items__wrapp">
-                                <ItemListCategories
-                                    categories={categories}
-                                    selectedCategories={selectedCategories}
-                                    changeSelectedCategories={changeSelectedCategories}
-                                    priceForm={priceForm}
-                                    setPriceForm={setPriceForm}
-                                />
-                                <div className="items__content">
-                                    <div className="items__header">
-                                        <div className="items__header-showing-results">Showing {filterByCategories.length} results of {items.length}</div>
-                                        <ItemsSort
-                                            onChange={e => setSelectedSort(e.target.value)}
-                                        />
+                        <BlackLine />
+                        <Items>
+                            <ItemListCategories
+                                categories={categories}
+                                selectedCategories={selectedCategories}
+                                changeSelectedCategories={changeSelectedCategories}
+                                priceForm={priceForm}
+                                setPriceForm={setPriceForm}
+                            />
+                            <div className="items__content">
+                                <div className="items__header">
+                                    <div className="items__header-showing-results">
+                                        Showing {filterByCategories.length} results of {items.length}
                                     </div>
-                                    <div className="items__line100 line100"></div>
-                                    <div className="items__search">
-                                        <BigSearch
-                                            value={searchQuery}
-                                            onChange={(e) => setSearchQuery(e.target.value)}
-                                            placeholder='Search...'
-                                        />
-                                    </div>
-                                    {
-                                        filterByCategories.map((item) =>
-                                            <ItemListItem
-                                                key={item.id}
-                                                id={item.id}
-                                                title={item.title}
-                                                slug={item.slug}
-                                                body={item.body}
-                                                price={item.price}
-                                                category_name={item.category_name}
-                                                image={item.image}
-                                                availableCount={item.available_count}
-                                                likes={item.likes.length}
-                                            />
-                                        )
-                                    }
-                                    {filterByCategories.length > 1
-                                        ?
-                                        <></>
-                                        :
-                                        <div
-                                            style={{ textAlign: 'center', fontSize: '30px', marginTop: '30px' }}
-                                        >
-                                            No items
-                                        </div>
-                                    }
+                                    <ItemsSort
+                                        onChange={e => setSelectedSort(e.target.value)}
+                                    />
                                 </div>
+                                <WhiteLine100 />
+                                <div className="items__search">
+                                    <BigSearch
+                                        value={searchQuery}
+                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                        placeholder='Search...'
+                                    />
+                                </div>
+                                {
+                                    filterByCategories.map((item) =>
+                                        <ItemListItem
+                                            key={item.id}
+                                            id={item.id}
+                                            title={item.title}
+                                            slug={item.slug}
+                                            body={item.body}
+                                            price={item.price}
+                                            category_name={item.category_name}
+                                            image={item.image}
+                                            availableCount={item.available_count}
+                                            likes={item.likes.length}
+                                        />
+                                    )
+                                }
+                                {filterByCategories.length > 1
+                                    ?
+                                    <></>
+                                    :
+                                    <div className='noItems'>No items</div>
+                                }
                             </div>
-                        </div>
+                        </Items>
                     </div>
                 </>
             }
-        </div >
+        </main >
     )
 }

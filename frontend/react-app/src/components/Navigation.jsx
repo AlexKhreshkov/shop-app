@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import NavSearch from '../components/UI/search/NavSearch'
-import { useAuth, useData } from '../hooks/useData'
+import { useData } from '../hooks/useData'
 
 export default function Navigation() {
 
@@ -9,7 +9,7 @@ export default function Navigation() {
     const location = useLocation()
     const navigate = useNavigate()
     const fromPage = location.state?.from?.pathname || '/'
-    const { isCartOpen, setCartStatus } = useData()
+    const { setCartStatus } = useData()
 
     return (
         <div className="nav">
@@ -31,7 +31,7 @@ export default function Navigation() {
                     </>
                 }
             </div>
-            <NavSearch/>
+            <NavSearch />
             <div className="nav__icons">
                 <div className="nav__cart-content">
                     {cartItems.length ?
@@ -45,7 +45,7 @@ export default function Navigation() {
                     <div className="nav__cart"><img src="/img/cart.png" alt="" /></div>
                 </div>
                 <div className="nav__profile">
-                    <NavLink to='/profile'><img src="/img/profile.png" alt="" /></NavLink>
+                    <Link to='/profile'><img src="/img/profile.png" alt="" /></Link>
                 </div>
                 {user
                     ?

@@ -4,8 +4,9 @@ import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Loader } from '../components/UI/loader/Loader'
 import { useData } from '../hooks/useData'
-import BlackLine from './BlackLine'
-import Navigation from './Navigation'
+import BlackLine from '../components/UI/lines/BlackLine'
+import Navigation from './../components/Navigation'
+
 
 export default function SignUp() {
     const navigate = useNavigate()

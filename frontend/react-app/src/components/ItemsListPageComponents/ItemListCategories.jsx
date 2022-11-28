@@ -1,5 +1,5 @@
 import React from 'react'
-import Category from '../pages/Category'
+import Category from './Category'
 
 export default function ItemListCategories({ categories, selectedCategories, changeSelectedCategories, priceForm, setPriceForm }) {
 

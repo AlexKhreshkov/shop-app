@@ -1,8 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { useData } from '../hooks/useData'
-import { getCategoryItemCount } from '../utils/utls'
+import { useData } from '../../hooks/useData'
+import { getCategoryItemCount } from '../../utils/utls'
 
 
 export default function Category({ name, categoryId, selectedCategories, changeSelectedCategories }) {

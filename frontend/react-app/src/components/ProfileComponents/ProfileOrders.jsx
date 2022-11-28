@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { useData } from '../hooks/useData'
-import { getOrderStatusName } from '../utils/utls'
+import { useData } from '../../hooks/useData'
+import { getOrderStatusName } from '../../utils/utls'
 import ProfileOrder from './ProfileOrder'
+
 
 export default function ProfileOrders() {
 

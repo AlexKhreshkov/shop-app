@@ -1,7 +1,7 @@
 import React from 'react'
-import { base_url } from '../API/getData'
-import { useData } from '../hooks/useData'
-import ProfilleInfoInput from './UI/input/ProfilleInfoInput'
+import { base_url } from '../../API/getData'
+import { useData } from '../../hooks/useData'
+import ProfilleInfoInput from '../UI/input/ProfilleInfoInput'
 
 export default function ProfileInfoForm({ fields, userInfoForm, setUserInfoForm, setIsSuccessModal, profileNewPic }) {
     const { authToken, user, setUser } = useData()
@@ -20,7 +20,7 @@ export default function ProfileInfoForm({ fields, userInfoForm, setUserInfoForm,
         setUser({ ...user, ...userInfoForm })
     }
     return (
-        <form>
+        <form className="profile__info-form">
             {fields.map((field, index) =>
                 <ProfilleInfoInput
                     key={index}

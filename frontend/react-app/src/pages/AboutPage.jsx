@@ -1,8 +1,9 @@
 import React from 'react'
+import About from '../components/AboutPageComponents/About'
 import { Loader } from '../components/UI/loader/Loader'
 import { useData } from '../hooks/useData'
-import BlackLine from './BlackLine'
-import Navigation from './Navigation'
+import BlackLine from '../components/UI/lines/BlackLine'
+import Navigation from './../components/Navigation'
 
 
 export default function AboutPage() {
@@ -11,17 +12,13 @@ export default function AboutPage() {
         <>
             {isLoading
                 ?
-                <div style={{ display: "flex", justifyContent: 'center', marginTop: '100px' }}><Loader /></div>
+                <div className='loader' ><Loader /></div>
                 :
-                <div className="main-content">
+                <main className="main-content">
                     <Navigation />
                     <BlackLine />
-                    <div className="main">
-                        <div className="div" style={{ textAlign: 'center', fontSize: '30px', marginTop: '20px' }}>
-                            About Info Page 
-                        </div>
-                    </div>
-                </div>
+                    <About />
+                </main>
             }
         </>
     )
