@@ -23,10 +23,10 @@ export default function ProfilePersonalInfo() {
             <div className="profile__info-item">
                 <div className="profile__row">
                     <div className="profile__pic">
-                        <img src={user.profile_pic} />
+                        <img src={user?.profile_pic} />
                     </div>
                     <div className="profile__username">
-                        Username: {user.username}
+                        Username: {user?.username}
                     </div>
                 </div>
                 <div className='profile__pic-update'>

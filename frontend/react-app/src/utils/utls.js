@@ -12,6 +12,15 @@ export function searchItemBySlug(slug, items, callback) {
     }
 }
 
+export function isItemLiked(user, searchedItem){
+    for (let userId of searchedItem.likes) {
+        if (userId === user.id) {
+            return true
+        }
+    }
+}
+
+
 export function getCategoryItemCount(items, categoryId) {
     let count = 0
     for (let item of items) {

@@ -24,14 +24,14 @@ export default function ProfilePage() {
                 <>
                     <Navigation />
                     <BlackLine />
-                    {isSuccessModal
+                    {/* {isSuccessModal
                         ?
                         <Success
                             onClick={e => setIsSuccessModal(false)}
                         />
                         :
                         <></>
-                    }
+                    } */}
                     <div className="main">
                         <div className="yourProfile">Your Profile</div>
                         <div className="profile__wrap">

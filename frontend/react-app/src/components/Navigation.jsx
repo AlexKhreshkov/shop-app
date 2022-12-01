@@ -6,7 +6,7 @@ import { useData } from '../hooks/useData'
 
 export default function Navigation() {
 
-    const { user, authToken, signOut, cartItems } = useData()
+    const { user, authToken, signOut, cartItems, isLoading } = useData()
     const location = useLocation()
     const navigate = useNavigate()
     const fromPage = location.state?.from?.pathname || '/'
@@ -37,17 +37,20 @@ export default function Navigation() {
                 </div>
                 <NavSearch />
                 <div className="nav__icons">
-                    <div className="nav__cart-content">
-                        {cartItems.length ?
-                            <>
-                                <div className="nav__count" onClick={() => setCartStatus(true)}>{cartItems.length}</div>
-                                <div className="nav__ellipse" onClick={() => setCartStatus(true)}><img src="/img/ellipse.png" /></div>
-                            </>
-                            :
-                            <></>
-                        }
-                        <div className="nav__cart"><img src="/img/cart.png" alt="" /></div>
-                    </div>
+                    {cartItems.length
+                        ?
+                        <div className="nav__cart-content" onClick={() => setCartStatus(true)}>
+                            <div className="nav__count">{cartItems.length}</div>
+                            <div className="nav__ellipse"><img src="/img/ellipse.png" /></div>
+                            <div className="nav__cart"><img src="/img/cart.png" alt="" /></div>
+                        </div>
+                        :
+                        <>
+                            <div className="nav__cart-content">
+                                <div className="nav__cart"><img src="/img/cart.png" alt="" /></div>
+                            </div>
+                        </>
+                    }
                     <div className="nav__profile">
                         <Link to='/profile'><img src="/img/profile.png" alt="" /></Link>
                     </div>
@@ -77,7 +80,10 @@ export default function Navigation() {
                 {cartItems
                     ?
                     <li onClick={() => setCartStatus(true)}>
-                        Cart
+                        <div>
+                            Cart: <img src="/img/cart.png" alt="" />
+                            {cartItems.length}
+                        </div>
                     </li>
                     :
                     <></>

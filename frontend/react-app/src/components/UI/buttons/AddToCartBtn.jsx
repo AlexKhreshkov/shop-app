@@ -5,8 +5,11 @@ export default function AddToCartBtn({ slug }) {
 
     const { addToCart } = useData()
     return (
-        <div className="item__add-to-cart-btn">
-            <button onClick={() => addToCart(slug)}>Add to cart</button>
-        </div>
+        <button
+            className='item__add-to-cart-btn'
+            onClick={() => addToCart(slug)}
+        >
+            Add to cart
+        </button>
     )
 }

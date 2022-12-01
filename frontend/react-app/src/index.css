@@ -147,6 +147,11 @@ a {
   margin: 5px 0;
   font-size: 20px;
   border-radius: 16px;
+  cursor: pointer;
+}
+
+.lowNavList li:hover {
+  background-color: rgb(248, 116, 116);
 }
 
 .lowNavList li:last-child {
@@ -547,10 +552,12 @@ a {
 }
 
 
-.item__add-to-cart-btn button {
+.item__add-to-cart-btn {
   background: url(../public/img/cart.png) 10px 24px no-repeat;
   border: 1px solid #eeeeee;
-  padding: 20px 10px 20px 35px;
+  display: flex;
+  justify-content: center;
+  padding: 10px 10px 10px 35px;
   font-size: 14px;
   line-height: 24px;
   text-transform: uppercase;
@@ -560,23 +567,25 @@ a {
   height: 65px;
 }
 
-.item__add-to-cart-btn button:hover {
+.item__add-to-cart-btn:hover {
   background-color: #3cb878;
   transition: 1s;
 }
 
-.item__like-btn button {
+.item__like-btn {
+  background: url(../public/img/like.png) 22px 22px no-repeat;
   border: 1px solid #eeeeee;
   background-color: white;
-  height: 65px;
-  padding: 0px 20px;
+  height: 64x;
+  width: 64px;
 }
 
-.item__like-btn-active button {
-  border: 1px solid #eeeeee;  
+.item__like-btn-active {
+  background: url(../public/img/like.png) 22px 22px no-repeat;
+  border: 1px solid #eeeeee;
   background-color: red;
-  height: 65px;
-  padding: 0px 20px;
+  height: 64x;
+  width: 64px;
 }
 
 
@@ -974,6 +983,7 @@ a {
   border-radius: 16px;
   background: #3cb878;
   font-size: 20px;
+  align-items: center;
 }
 
 .cart {
@@ -983,6 +993,7 @@ a {
   background-color: rgba(0, 0, 0, 0.3);
   top: 0;
   left: 0;
+  z-index: 10;
 }
 
 .cart.open {
@@ -1256,4 +1267,12 @@ button {
   justify-content: center;
   font-size: 30px;
   margin: 20px 0;
+}
+
+.signUpTitle, .loginTitle {
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  margin-top: 30px;
+  margin-bottom: 20px;
 }

@@ -2,13 +2,13 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useData } from '../hooks/useData'
-import { searchItemBySlug } from '../utils/utls'
+import { isItemLiked, searchItemBySlug } from '../utils/utls'
 import { Loader } from '../components/UI/loader/Loader'
 import Navigation from './../components/Navigation'
-import { base_url } from '../API/getData'
 import BlackLine from '../components/UI/lines/BlackLine'
 import ItemWrapp from '../components/ItemPageComponents/ItemWrapp'
 import ItemComments from '../components/ItemPageComponents/ItemComments'
+import { updateItemLikes } from '../API/modifyData'
 
 
 export default function ItemPage() {
@@ -21,51 +21,26 @@ export default function ItemPage() {
 
     useEffect(() => {
         async function preload() {
-            const searchedItem = await searchItemBySlug(slug, items)
+            const searchedItem = searchItemBySlug(slug, items)
             setItem(searchedItem)
             setItemCommets([...comments].filter(comment => comment.item_slug === slug))
-            for (let userId of searchedItem.likes) {
-                if (userId === user.id) {
-                    setIsLiked(true)
-                    break
-                }
-            }
+            setIsLiked(isItemLiked(user, searchedItem) ? true : false)
         }
         preload()
     }, [comments])
 
-
     async function addLikeToItem() {
+        let newItemLikes
         if (!isLiked) {
-            const newItemLikes = [...item.likes, user.id]
-            await fetch(`${base_url}/items/${slug}/update/`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Token ${authToken}`,
-                },
-                body: JSON.stringify({
-                    likes: [...item.likes, user.id],
-                }),
-            })
+            newItemLikes = [...item.likes, user.id]
             setIsLiked(true)
-            item.likes = newItemLikes
         }
         else {
-            const newItemLikes = [...item.likes].filter(elem => elem !== user.id)
-            fetch(`${base_url}/items/${slug}/update/`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Token ${authToken}`,
-                },
-                body: JSON.stringify({
-                    likes: newItemLikes,
-                }),
-            })
+            newItemLikes = [...item.likes].filter(elem => elem !== user.id)
             setIsLiked(false)
-            item.likes = newItemLikes
         }
+        updateItemLikes(newItemLikes, slug, authToken)
+        item.likes = newItemLikes
     }
 
     return (

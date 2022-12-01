@@ -1,0 +1,35 @@
+.authForm {
+    max-width: 40%;
+    margin: 0px auto;
+    padding: 10px;
+    border-radius: 16px;
+    margin-top: 30px;
+    font-size: 15px;
+    border: 1px solid black;
+}
+
+.authForm form {
+    display: flex;
+    flex-direction: column;
+}
+
+.authForm form label {
+    margin: 10px 0;
+}
+
+.authForm form input {
+    border-bottom: 2px solid black;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.authForm form input:focus {
+    border-bottom: 2px solid #3cb878;
+}
+
+.authForm form button {
+    border-radius: 16px;
+    background: #3cb878;
+    font-size: 20px;
+    align-items: center;
+}

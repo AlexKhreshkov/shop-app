@@ -31,8 +31,16 @@ export const DataProvider = ({ children }) => {
         setComments(fetchedComments)
         const fetchedUsersProfiles = await getUsersProfilesPic()
         setUsersProfilesPic(fetchedUsersProfiles)
-        defineUser(fetchedItems)
+        defineUser()
     })
+
+    useEffect(() => {
+        fetchItems()
+    }, [])
+
+    useEffect(() => {
+        defineUser()
+    }, [authToken])
 
     const defineUser = async () => {
         if (localStorage.getItem('authToken')) {
@@ -56,13 +64,6 @@ export const DataProvider = ({ children }) => {
         }
     }
 
-    useEffect(() => {
-        fetchItems()
-    }, [])
-
-    useEffect(() => {
-        defineUser()
-    }, [authToken])
 
     async function signUp(newUser, redirectCallBack) {
 

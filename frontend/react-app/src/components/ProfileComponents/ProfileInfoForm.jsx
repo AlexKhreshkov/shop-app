@@ -30,14 +30,10 @@ export default function ProfileInfoForm({ fields, userInfoForm, setUserInfoForm,
                     setUserInfoForm={setUserInfoForm}
                 />
             )}
-            <button onClick={(e) => {
-                updateUserInfo(e)
-                setIsSuccessModal(true)
-            }}
-            >
+            <button onClick={(e) => updateUserInfo(e)}>
                 Update
             </button>
-            {isSuccessModal ? <Success/> : <></>}
+            {isSuccessModal ? <Success /> : <></>}
         </form>
     )
 }
