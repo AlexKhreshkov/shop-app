@@ -31,7 +31,7 @@ make an order from cart, registration, make profile, leave comments/like product
   <li>HTML</li>
   <li>CSS/SCSS</li>
   <li>JavaScript/<a href='https://reactjs.org/'>React</a></li>
-  <li><a href='https://www.djangoproject.com/'>Django</a>/<a href='https://www.django-rest-framework.org/'>DjangoRestFramework</a></li>
+  <li>Python/<a href='https://www.djangoproject.com/'>Django</a>/<a href='https://www.django-rest-framework.org/'>DjangoRestFramework</a></li>
   <li>
   <a href='https://www.postgresql.org/'>PostgreSQL</a>
   </li>
